@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Doménu nahraďte skutečnou adresou webu.
+Sitemap: https://www.kubovodilna.cz/sitemap.xml

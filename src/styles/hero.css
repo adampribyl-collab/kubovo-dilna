@@ -1,0 +1,287 @@
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--c-surface-1);
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* výřez fotky – při změně se automaticky přepočítá i pozice jisker */
+  object-position: var(--hero-focus, 50% 50%);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 48%, rgb(18 18 18 / 0.5), rgb(18 18 18 / 0) 100%),
+    linear-gradient(
+      180deg,
+      rgb(18 18 18 / 0.72) 0%,
+      rgb(18 18 18 / 0.25) 28%,
+      rgb(18 18 18 / 0.25) 58%,
+      rgb(18 18 18 / 0.94) 100%
+    );
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: calc(var(--header-h) + 48px);
+  padding-bottom: 48px;
+  text-align: center;
+}
+
+.hero__est {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(242 239 234 / 0.88);
+}
+
+.hero__est::before,
+.hero__est::after {
+  content: '';
+  width: 44px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* --- velký nápis ------------------------------------------------------- */
+.hero-title {
+  margin: 22px 0 26px;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(64px, 15vw, 216px);
+  line-height: 0.86;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 40px rgb(0 0 0 / 0.35);
+}
+
+.hero-title__visual {
+  display: flex;
+  justify-content: center;
+  gap: 0.2em;
+  white-space: nowrap;
+}
+
+.hero-title__word {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.char {
+  display: inline-block;
+  /* maska pro vyjetí písmen – nahoře rezerva kvůli čárce nad Í */
+  overflow: hidden;
+  padding: 0.2em 0.01em 0.04em;
+  margin: -0.2em -0.01em -0.04em;
+}
+
+.char__in {
+  display: inline-block;
+  animation: char-rise 1s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 55ms + 120ms);
+}
+
+.nut {
+  display: inline-block;
+  width: auto;
+  height: 0.72em;
+  margin: 0 0.035em;
+  vertical-align: -0.01em;
+  fill: currentColor;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: nut-spin 1.5s cubic-bezier(0.25, 0.7, 0.2, 1) both;
+  animation-delay: 0.75s;
+}
+
+@keyframes char-rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+
+@keyframes nut-spin {
+  from {
+    transform: rotate(-240deg);
+  }
+}
+
+/* ostatní prvky hero naběhnou po nápisu */
+.intro {
+  animation: intro-fade 0.9s var(--ease-out) both;
+}
+
+.intro--1 {
+  animation-delay: 0.1s;
+}
+.intro--2 {
+  animation-delay: 0.45s;
+}
+.intro--3 {
+  animation-delay: 0.6s;
+}
+.intro--4 {
+  animation-delay: 0.8s;
+}
+
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.hero__sub {
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgb(242 239 234 / 0.92);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+/* jemná tmavá výplň – text zůstane čitelný i s jiskrami za tlačítkem */
+.hero .btn--ghost {
+  background: rgb(18 18 18 / 0.5);
+}
+
+.hero .btn--ghost:hover {
+  background: rgb(18 18 18 / 0.7);
+}
+
+/* blok s nápisem o kus výš než střed, aby jiskry od brusky vylétaly pod tlačítky */
+@media (min-width: 768px) {
+  .hero__content {
+    padding-bottom: clamp(48px, 22vh, 240px);
+  }
+}
+
+/* --- fakta dole ------------------------------------------------------ */
+.hero__facts {
+  padding-bottom: 28px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgb(242 239 234 / 0.2);
+}
+
+.fact {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 20px 16px 0 0;
+}
+
+.fact + .fact {
+  padding-left: 24px;
+  border-left: 1px solid rgb(242 239 234 / 0.2);
+}
+
+.fact__num {
+  font-family: var(--f-display);
+  font-size: clamp(30px, 3.2vw, 46px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-accent);
+  white-space: nowrap;
+}
+
+.fact__label {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(242 239 234 / 0.78);
+}
+
+@media (max-width: 599px) {
+  .hero-title {
+    font-size: min(31vw, 150px);
+    line-height: 0.84;
+  }
+
+  .hero-title__visual {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.02em;
+  }
+
+  .hero__content {
+    padding-top: calc(var(--header-h) + 36px);
+    padding-bottom: 36px;
+  }
+
+  .hero__ctas {
+    flex-direction: column;
+    align-self: stretch;
+    margin-top: 32px;
+  }
+
+  .fact {
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 8px 0 0;
+  }
+
+  .fact + .fact {
+    padding-left: 12px;
+  }
+
+  .fact__label {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    --hero-focus: 47% 50%;
+  }
+}

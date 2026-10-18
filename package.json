@@ -1,0 +1,18 @@
+{
+  "name": "kubovo-dilna",
+  "private": true,
+  "version": "1.0.0",
+  "description": "One page web KUBOVO DÍLNA – klempířství a zámečnictví",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "images": "node scripts/build-images.mjs",
+    "images:placeholders": "node scripts/build-images.mjs --placeholders"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5",
+    "vite": "^8.3.4"
+  }
+}
