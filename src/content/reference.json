@@ -1,0 +1,244 @@
+{
+  "nadpis": "Hotová práce mluví za mě",
+  "text": "Výběr z realizací. Klikněte na fotku pro detail, nebo rozbalte celou galerii.",
+  "kategorie": [
+    {
+      "id": "ploty",
+      "nazev": "Ploty"
+    },
+    {
+      "id": "brany",
+      "nazev": "Brány"
+    },
+    {
+      "id": "konstrukce",
+      "nazev": "Konstrukce"
+    },
+    {
+      "id": "opravy",
+      "nazev": "Opravy"
+    },
+    {
+      "id": "povrch",
+      "nazev": "Povrchová ochrana"
+    }
+  ],
+  "polozky": [
+    {
+      "nazev": "Posuvná brána s pohonem",
+      "kategorie": "brany",
+      "popisek": "Brána · pozink + lak",
+      "povrch": "Žárový zinek + lak RAL 7016",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Antracitová posuvná brána s elektrickým pohonem u vjezdu k rodinnému domu"
+    },
+    {
+      "nazev": "Plot z jeklů, 42 m",
+      "kategorie": "ploty",
+      "popisek": "Plot · RAL 7016",
+      "povrch": "Základ + lak RAL 7016",
+      "misto": "[Obec] · zahrada",
+      "foto": "",
+      "popisFoto": "Dlouhý plot ze svislých jeklů v antracitové barvě podél zahrady"
+    },
+    {
+      "nazev": "Oplechování atiky",
+      "kategorie": "konstrukce",
+      "popisek": "Plech · titanzinek",
+      "povrch": "Titanzinkový plech, přírodní",
+      "misto": "[Obec] · bytový dům",
+      "foto": "",
+      "popisFoto": "Nové oplechování atiky ploché střechy z titanzinkového plechu"
+    },
+    {
+      "nazev": "Oprava zábradlí schodiště",
+      "kategorie": "opravy",
+      "popisek": "Oprava · svařování",
+      "povrch": "Přivaření, základ + lak RAL 9005",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Opravené kovové zábradlí venkovního schodiště"
+    },
+    {
+      "nazev": "Renovace kovaného plotu",
+      "kategorie": "povrch",
+      "popisek": "Povrch · RAL 9005",
+      "povrch": "Odrezení, základ + lak RAL 9005",
+      "misto": "[Obec] · vila",
+      "foto": "",
+      "popisFoto": "Kovaný plot po odrezení a novém černém nátěru"
+    },
+    {
+      "nazev": "Branka s poštovní schránkou",
+      "kategorie": "brany",
+      "popisek": "Branka · lak",
+      "povrch": "Základ + lak RAL 7016",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Vstupní branka s integrovanou poštovní schránkou"
+    },
+    {
+      "nazev": "Přístřešek na popelnice",
+      "kategorie": "konstrukce",
+      "popisek": "Konstrukce · pozink",
+      "povrch": "Žárový zinek",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Pozinkovaný kovový přístřešek na tři popelnice"
+    },
+    {
+      "nazev": "Plotová pole z tahokovu",
+      "kategorie": "ploty",
+      "popisek": "Plot · pozink",
+      "povrch": "Žárový zinek",
+      "misto": "[Obec] · firemní areál",
+      "foto": "",
+      "popisFoto": "Plotová pole z tahokovu v pozinkovaném rámu"
+    },
+    {
+      "nazev": "Výměna pantů vjezdové brány",
+      "kategorie": "opravy",
+      "popisek": "Oprava · panty",
+      "povrch": "Nové panty, základ + lak",
+      "misto": "[Obec] · statek",
+      "foto": "",
+      "popisFoto": "Detail nově přivařených pantů na staré vjezdové bráně"
+    },
+    {
+      "nazev": "Dvoukřídlá brána, kovaný styl",
+      "kategorie": "brany",
+      "popisek": "Brána · RAL 9005",
+      "povrch": "Základ + lak RAL 9005",
+      "misto": "[Obec] · vila",
+      "foto": "",
+      "popisFoto": "Černá dvoukřídlá brána s kovanými ozdobnými prvky"
+    },
+    {
+      "nazev": "Lakování zábradlí balkonu",
+      "kategorie": "povrch",
+      "popisek": "Povrch · RAL 7016",
+      "povrch": "Odrezení, základ + lak RAL 7016",
+      "misto": "[Obec] · bytový dům",
+      "foto": "",
+      "popisFoto": "Balkonové zábradlí po přebroušení a novém antracitovém nátěru"
+    },
+    {
+      "nazev": "Plechová stříška nad vchod",
+      "kategorie": "konstrukce",
+      "popisek": "Plech · RAL 7016",
+      "povrch": "Lakovaný plech RAL 7016",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Plechová stříška nad vstupními dveřmi na kovových konzolách"
+    },
+    {
+      "nazev": "Samonosná brána 5 m",
+      "kategorie": "brany",
+      "popisek": "Brána · pozink",
+      "povrch": "Žárový zinek",
+      "misto": "[Obec] · dílna",
+      "foto": "",
+      "popisFoto": "Pětimetrová samonosná posuvná brána v pozinkovaném provedení"
+    },
+    {
+      "nazev": "Plot s podhrabovými deskami, 28 m",
+      "kategorie": "ploty",
+      "popisek": "Plot · pozink + lak",
+      "povrch": "Žárový zinek + lak RAL 6005",
+      "misto": "[Obec] · zahrada",
+      "foto": "",
+      "popisFoto": "Zelený plot z panelů na betonových podhrabových deskách"
+    },
+    {
+      "nazev": "Výměna prasklého sloupku",
+      "kategorie": "opravy",
+      "popisek": "Oprava · svařování",
+      "povrch": "Nový sloupek, základ + lak",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Nově osazený a přivařený plotový sloupek"
+    },
+    {
+      "nazev": "Brána z tahokovu",
+      "kategorie": "brany",
+      "popisek": "Brána · RAL 7016",
+      "povrch": "Žárový zinek + lak RAL 7016",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Křídlová brána s výplní z tahokovu v antracitové barvě"
+    },
+    {
+      "nazev": "Zajištění žárového zinku – vrata",
+      "kategorie": "povrch",
+      "popisek": "Povrch · žárový zinek",
+      "povrch": "Žárové zinkování ve zinkovně",
+      "misto": "[Obec] · zemědělský areál",
+      "foto": "",
+      "popisFoto": "Rám vrat po žárovém zinkování připravený k montáži"
+    },
+    {
+      "nazev": "Garážová vrata – rám",
+      "kategorie": "konstrukce",
+      "popisek": "Konstrukce · lak",
+      "povrch": "Základ + lak RAL 9006",
+      "misto": "[Obec] · garáž",
+      "foto": "",
+      "popisFoto": "Svařený ocelový rám garážových vrat"
+    },
+    {
+      "nazev": "Lamelový plot, 18 m",
+      "kategorie": "ploty",
+      "popisek": "Plot · RAL 7016",
+      "povrch": "Žárový zinek + lak RAL 7016",
+      "misto": "[Obec] · terasa",
+      "foto": "",
+      "popisFoto": "Neprůhledný lamelový plot oddělující terasu"
+    },
+    {
+      "nazev": "Oprava vrat stodoly",
+      "kategorie": "opravy",
+      "popisek": "Oprava · svařování + lak",
+      "povrch": "Nové výztuhy, základ + lak",
+      "misto": "[Obec] · statek",
+      "foto": "",
+      "popisFoto": "Opravená velká vrata stodoly s novými kovovými výztuhami"
+    },
+    {
+      "nazev": "Křídlová brána s brankou",
+      "kategorie": "brany",
+      "popisek": "Brána · RAL 7016",
+      "povrch": "Základ + lak RAL 7016",
+      "misto": "[Obec] · rodinný dům",
+      "foto": "",
+      "popisFoto": "Sestava křídlové brány a branky ve stejném designu"
+    },
+    {
+      "nazev": "Ocelové schodiště do dílny",
+      "kategorie": "konstrukce",
+      "popisek": "Konstrukce · základ + lak",
+      "povrch": "Základ + lak RAL 7035",
+      "misto": "[Obec] · dílna",
+      "foto": "",
+      "popisFoto": "Ocelové schodiště s podestou a zábradlím vedoucí do patra dílny"
+    },
+    {
+      "nazev": "Plot ze svařovaných sítí",
+      "kategorie": "ploty",
+      "popisek": "Plot · pozink",
+      "povrch": "Žárový zinek",
+      "misto": "[Obec] · sad",
+      "foto": "",
+      "popisFoto": "Plot ze svařovaných pozinkovaných sítí kolem ovocného sadu"
+    },
+    {
+      "nazev": "Odrezení a nátěr branky",
+      "kategorie": "povrch",
+      "popisek": "Povrch · RAL 6005",
+      "povrch": "Odrezení, základ + lak RAL 6005",
+      "misto": "[Obec] · chalupa",
+      "foto": "",
+      "popisFoto": "Stará branka po odrezení a novém zeleném nátěru"
+    }
+  ]
+}

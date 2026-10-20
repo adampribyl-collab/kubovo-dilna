@@ -1,0 +1,27 @@
+{
+  "nazev": "KUBOVO DÍLNA",
+  "podtitul": "klempířství · zámečnictví",
+  "jmeno": "[Jméno Příjmení]",
+  "telefon": "+420 777 123 456",
+  "email": "info@kubovodilna.cz",
+  "ico": "12345678",
+  "adresa": {
+    "ulice": "[Ulice a číslo popisné]",
+    "psc": "[PSČ]",
+    "mesto": "[Město]"
+  },
+  "pusobnost": "[Město] a okolí do 50 km",
+  "oteviraciDoba": {
+    "dny": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "od": "07:00",
+    "do": "17:00"
+  },
+  "web": "https://adampribyl-collab.github.io/kubovo-dilna",
+  "poptavkyEndpoint": ""
+}

@@ -1,21 +1,25 @@
 /**
- * Generátor obrázků pro web.
+ * Generátor obrázků pro web (spouští se i automaticky před `npm run build`).
  *
  *   npm run images               – zpracuje fotky z /photos, chybějícím obrázkům vyrobí zástupné plochy
  *   npm run images:placeholders  – přegeneruje zástupné plochy u všech obrázků, které nemají fotku
  *
- * Fotky vkládejte do složky /photos pod názvem podle tabulky níže, např. photos/hero-grinder.jpg
- * (jpg, jpeg, png, webp, tif, avif). Skript je ořízne na střed na správný poměr stran a uloží
- * do public/img/ jako <název>-<šířka>.webp a <název>-<šířka>.jpg.
+ * Fotky služeb a referencí nahrává redakce (/admin/) do /photos a cestu uloží do src/content/*.json.
+ * Úvodní fotky hero-grinder a welder-mask se vkládají do /photos ručně pod tímto názvem.
+ * Skript fotky ořízne na střed na správný poměr stran a uloží do public/img/ jako
+ * <název>-<šířka>.webp a <název>-<šířka>.jpg. Nezměněné fotky přeskočí (scripts/.images-manifest.json).
  */
-import { readdir, mkdir, access, readFile } from 'node:fs/promises';
+import { readdir, mkdir, access, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { imageName, refFallback, serviceFallback } from '../src/js/image-name.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC_DIR = path.join(ROOT, 'photos');
 const OUT_DIR = path.join(ROOT, 'public', 'img');
+const MANIFEST = path.join(ROOT, 'scripts', '.images-manifest.json');
 const FORCE_PLACEHOLDERS = process.argv.includes('--placeholders');
 
 const SIZES = {
@@ -25,23 +29,29 @@ const SIZES = {
   ref: { ratio: [4, 3], widths: [480, 800, 1400] },
 };
 
-// Reference se berou ze src/data/references.json – nová položka tam = nový obrázek tady.
-const { items: references } = JSON.parse(await readFile(path.join(ROOT, 'src/data/references.json'), 'utf8'));
+// Služby a reference se berou z obsahu webu – nová položka v redakci = nový obrázek tady.
+const content = async (file) => JSON.parse(await readFile(path.join(ROOT, 'src/content', file), 'utf8'));
+const sluzby = await content('sluzby.json');
+const reference = await content('reference.json');
 
 const IMAGES = [
   { name: 'hero-grinder', size: 'hero', label: 'Řemeslník s úhlovou bruskou, proud jisker', glow: [0.68, 0.62], labelPos: 'top-left' },
   { name: 'welder-mask', size: 'wide', label: 'Svářeč v kukle, oblouk a stoupající kouř', glow: [0.62, 0.58], labelPos: 'top-right' },
-  { name: 'service-ploty', size: 'service', label: 'Ploty a brány' },
-  { name: 'service-plech', size: 'service', label: 'Plechové konstrukce' },
-  { name: 'service-opravy', size: 'service', label: 'Opravy kovových konstrukcí' },
-  { name: 'service-povrch', size: 'service', label: 'Povrchová ochrana' },
-  ...references.map((ref) => ({ name: ref.image, size: 'ref', label: ref.title })),
+  ...sluzby.karty.map((k, i) => ({ name: imageName(k.foto, serviceFallback(i)), foto: k.foto, size: 'service', label: k.nazev })),
+  ...reference.polozky.map((r, i) => ({ name: imageName(r.foto, refFallback(i)), foto: r.foto, size: 'ref', label: r.nazev })),
 ];
 
 const exists = (p) => access(p).then(() => true, () => false);
+const xml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[c]);
 
-async function findSource(name, files) {
-  const hit = files.find((f) => path.parse(f).name.toLowerCase() === name && /\.(jpe?g|png|webp|tiff?|avif)$/i.test(f));
+/** Zdrojová fotka: cesta uložená redakcí, jinak soubor v /photos se stejným názvem. */
+async function findSource(img, files, warnings) {
+  if (img.foto) {
+    const fromCms = path.join(ROOT, img.foto.replace(/^\/+/, ''));
+    if (await exists(fromCms)) return fromCms;
+    warnings.push(`${img.name}: fotka ${img.foto} v repozitáři chybí, použiju zástupnou plochu`);
+  }
+  const hit = files.find((f) => path.parse(f).name.toLowerCase() === img.name && /\.(jpe?g|png|webp|tiff?|avif)$/i.test(f));
   return hit ? path.join(SRC_DIR, hit) : null;
 }
 
@@ -79,8 +89,8 @@ function placeholderSvg({ name, label, glow, labelPos = 'center' }, w, h, [rw, r
   <rect width="100%" height="100%" fill="url(#v)"/>
   <rect x="${u * 0.6}" y="${u * 0.6}" width="${w - u * 1.2}" height="${h - u * 1.2}" fill="none" stroke="#383838" stroke-width="${Math.max(1, u * 0.1)}"/>
   <g font-family="Menlo, 'DejaVu Sans Mono', monospace" text-anchor="${pos.anchor}">
-    <text x="${pos.x}" y="${pos.y}" font-size="${fs1}" fill="#F2EFEA" letter-spacing="${fs1 * 0.06}">${name.toUpperCase()} · ${rw}:${rh}</text>
-    <text x="${pos.x}" y="${pos.y + fs1 * 1.5}" font-size="${fs2}" fill="#9E9994">${label}</text>
+    <text x="${pos.x}" y="${pos.y}" font-size="${fs1}" fill="#F2EFEA" letter-spacing="${fs1 * 0.06}">${xml(name.toUpperCase())} · ${rw}:${rh}</text>
+    <text x="${pos.x}" y="${pos.y + fs1 * 1.5}" font-size="${fs2}" fill="#9E9994">${xml(label)}</text>
   </g>
 </svg>`;
 }
@@ -95,13 +105,21 @@ async function writeVariants(pipelineFactory, name, w) {
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   const files = (await exists(SRC_DIR)) ? await readdir(SRC_DIR) : [];
-  const report = { photos: [], placeholders: [], skipped: [], warnings: [] };
+  const report = { photos: [], placeholders: [], skipped: [], unchanged: [], warnings: [] };
+  const manifest = (await exists(MANIFEST)) ? JSON.parse(await readFile(MANIFEST, 'utf8')) : {};
 
   for (const img of IMAGES) {
     const { ratio, widths } = SIZES[img.size];
-    const src = await findSource(img.name, files);
+    const src = await findSource(img, files, report.warnings);
 
     if (src) {
+      // fotka se od minula nezměnila a varianty existují → přeskočit
+      const hash = createHash('sha1').update(await readFile(src)).update(JSON.stringify(SIZES[img.size])).digest('hex');
+      const outputsExist = (await Promise.all(widths.map((w) => exists(path.join(OUT_DIR, `${img.name}-${w}.webp`))))).every(Boolean);
+      if (manifest[img.name] === hash && outputsExist) {
+        report.unchanged.push(img.name);
+        continue;
+      }
       const { width: srcWidth = 0 } = await sharp(src).metadata();
       const maxWidth = Math.max(...widths);
       if (srcWidth < maxWidth) {
@@ -111,6 +129,7 @@ async function main() {
         const h = Math.round((w * ratio[1]) / ratio[0]);
         await writeVariants(() => sharp(src).rotate().resize(w, h, { fit: 'cover', position: 'centre' }), img.name, w);
       }
+      manifest[img.name] = hash;
       report.photos.push(img.name);
       continue;
     }
@@ -128,7 +147,9 @@ async function main() {
     report.placeholders.push(img.name);
   }
 
+  await writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
   console.log(`Fotky zpracovány (${report.photos.length}): ${report.photos.join(', ') || '–'}`);
+  if (report.unchanged.length) console.log(`Fotky beze změny (${report.unchanged.length}): ${report.unchanged.join(', ')}`);
   console.log(`Zástupné plochy (${report.placeholders.length}): ${report.placeholders.join(', ') || '–'}`);
   if (report.skipped.length) console.log(`Beze změny (${report.skipped.length}) – zástupné plochy už existují.`);
   report.warnings.forEach((w) => console.warn(`Pozor – ${w}`));

@@ -1,2 +1,3 @@
-Sem patří originální fotky (např. hero-grinder.jpg, welder-mask.jpg, service-ploty.jpg, ref-01.jpg …).
-Pak spusťte `npm run images`. Podrobnosti najdete v README.md v kořeni projektu.
+Zdrojové fotky webu. Fotky služeb a referencí sem ukládá redakce (/admin/).
+Úvodní fotky hero-grinder a welder-mask se mění ručně pod stejným názvem.
+Zmenšené verze pro web vyrobí `npm run images` (spouští se i v `npm run build`). Podrobnosti v README.md.

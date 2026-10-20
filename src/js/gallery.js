@@ -1,5 +1,6 @@
-import data from '../data/references.json';
+import data from '../content/reference.json';
 import { pictureHTML, escapeHtml, plural, prefersReducedMotion, afterTransition } from './utils.js';
+import { imageName, refFallback } from './image-name.js';
 
 const HEIGHT_MS = 400; // délka animace rozbalení (shodná s CSS .gallery__viewport)
 
@@ -17,39 +18,41 @@ export function initGallery(lightbox) {
   const countEl = root.querySelector('[data-gallery-count]');
   const section = root.closest('section') || root;
 
-  const labels = Object.fromEntries(data.categories.map((c) => [c.id, c.label]));
-  const items = data.items;
+  // Data spravuje redakce (src/content/reference.json); název obrázku se odvodí z nahrané fotky.
+  const labels = Object.fromEntries(data.kategorie.map((c) => [c.id, c.nazev]));
+  const items = data.polozky.map((it, i) => ({ ...it, image: imageName(it.foto, refFallback(i)) }));
 
   /* --- vykreslení filtrů a dlaždic --------------------------------------- */
-  const filters = [{ id: 'all', label: 'Vše' }, ...data.categories];
+  // jen kategorie, ve kterých něco je
+  const filters = [{ id: 'all', nazev: 'Vše' }, ...data.kategorie.filter((c) => items.some((it) => it.kategorie === c.id))];
   filtersEl.innerHTML = filters
     .map((f) => {
-      const count = f.id === 'all' ? items.length : items.filter((it) => it.category === f.id).length;
-      return `<button class="filter" type="button" data-filter="${f.id}" aria-pressed="${f.id === 'all'}">
-        ${escapeHtml(f.label)}<span class="filter__count" aria-label="(${count})">${count}</span>
+      const count = f.id === 'all' ? items.length : items.filter((it) => it.kategorie === f.id).length;
+      return `<button class="filter" type="button" data-filter="${escapeHtml(f.id)}" aria-pressed="${f.id === 'all'}">
+        ${escapeHtml(f.nazev)}<span class="filter__count" aria-label="(${count})">${count}</span>
       </button>`;
     })
     .join('');
 
   grid.innerHTML = items
     .map(
-      (it, i) => `<li class="tile" data-category="${escapeHtml(it.category)}" data-index="${i}">
+      (it, i) => `<li class="tile" data-category="${escapeHtml(it.kategorie)}" data-index="${i}">
         <div class="tile__frame">
           ${pictureHTML(it.image, {
             widths: [480, 800, 1400],
             sizes: '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw',
-            alt: it.alt || it.title,
+            alt: it.popisFoto || it.nazev,
             width: 800,
             height: 600,
           })}
-          <span class="tile__cat">${escapeHtml(labels[it.category] || it.category)}</span>
+          <span class="tile__cat">${escapeHtml(labels[it.kategorie] || it.kategorie)}</span>
           <span class="tile__plus" aria-hidden="true">+</span>
         </div>
         <div class="tile__body">
-          <p class="tile__title">${escapeHtml(it.title)}</p>
-          <p class="tile__caption">${escapeHtml(it.caption)}</p>
+          <p class="tile__title">${escapeHtml(it.nazev)}</p>
+          <p class="tile__caption">${escapeHtml(it.popisek)}</p>
         </div>
-        <button class="tile__btn" type="button" aria-haspopup="dialog" aria-label="Zobrazit detail: ${escapeHtml(it.title)}"></button>
+        <button class="tile__btn" type="button" aria-haspopup="dialog" aria-label="Zobrazit detail: ${escapeHtml(it.nazev)}"></button>
       </li>`,
     )
     .join('');

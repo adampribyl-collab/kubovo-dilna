@@ -1,31 +1,29 @@
 <!doctype html>
+<!--
+  Šablona stránky (Handlebars). Texty ve dvojitých složených závorkách se doplňují
+  ze src/content/*.json – upravuje je redakce na /admin/.
+  Ručně tady měňte jen strukturu a vzhled, ne texty.
+-->
 <html lang="cs">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>KUBOVO DÍLNA – klempířství a zámečnictví | ploty, brány, plech</title>
-    <meta
-      name="description"
-      content="Klempířství a zámečnictví Kuba: výroba a montáž plotů a bran, plechové konstrukce, opravy kovových konstrukcí, lakování v RAL a žárový zinek. Nacenění do 48 hodin."
-    />
-    <!-- Doménu kubovodilna.cz nahraďte skutečnou adresou webu (canonical, og:url, og:image, JSON-LD). -->
-    <link rel="canonical" href="https://www.kubovodilna.cz/" />
+    <title>{{seo.titulek}}</title>
+    <meta name="description" content="{{seo.popis}}" />
+    <link rel="canonical" href="{{webUrl}}/" />
     <meta name="theme-color" content="#121212" />
     <meta name="color-scheme" content="dark" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="cs_CZ" />
-    <meta property="og:site_name" content="KUBOVO DÍLNA" />
-    <meta property="og:title" content="KUBOVO DÍLNA – klempířství a zámečnictví" />
-    <meta
-      property="og:description"
-      content="Svařování · plech · povrchová ochrana. Ploty, brány, plechové konstrukce a opravy na míru. Nacenění do 48 hodin."
-    />
-    <meta property="og:url" content="https://www.kubovodilna.cz/" />
-    <meta property="og:image" content="https://www.kubovodilna.cz/og-image.jpg" />
+    <meta property="og:site_name" content="{{firma.nazev}}" />
+    <meta property="og:title" content="{{seo.titulekSdileni}}" />
+    <meta property="og:description" content="{{seo.popisSdileni}}" />
+    <meta property="og:url" content="{{webUrl}}/" />
+    <meta property="og:image" content="{{webUrl}}/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="KUBOVO DÍLNA – klempířství a zámečnictví" />
+    <meta property="og:image:alt" content="{{seo.titulekSdileni}}" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -59,47 +57,7 @@
     />
 
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "@id": "https://www.kubovodilna.cz/#firma",
-        "name": "KUBOVO DÍLNA",
-        "description": "Klempířství a zámečnictví – ploty a brány, plechové konstrukce, opravy kovových konstrukcí a povrchová ochrana.",
-        "url": "https://www.kubovodilna.cz/",
-        "image": "https://www.kubovodilna.cz/og-image.jpg",
-        "logo": "https://www.kubovodilna.cz/apple-touch-icon.png",
-        "telephone": "+420777123456",
-        "email": "info@kubovodilna.cz",
-        "founder": { "@type": "Person", "name": "[Jméno Příjmení]" },
-        "identifier": { "@type": "PropertyValue", "propertyID": "IČO", "value": "12345678" },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "[Ulice a číslo popisné]",
-          "addressLocality": "[Město]",
-          "postalCode": "[PSČ]",
-          "addressCountry": "CZ"
-        },
-        "areaServed": "[Město] a okolí do 50 km",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "07:00",
-            "closes": "17:00"
-          }
-        ],
-        "knowsAbout": ["Svařování", "Ploty", "Brány", "Klempířství", "Zámečnictví", "Lakování RAL", "Žárový zinek"],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Služby",
-          "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ploty a brány" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plechové konstrukce" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Opravy kovových konstrukcí" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Povrchová ochrana" } }
-          ]
-        }
-      }
+{{jsonLd}}
     </script>
   </head>
 
@@ -112,26 +70,26 @@
         <a class="logo" href="#top">
           <span class="logo__mark" aria-hidden="true">K</span>
           <span class="logo__text">
-            <span class="logo__name">KUBOVO DÍLNA</span>
-            <span class="logo__sub">klempířství · zámečnictví</span>
+            <span class="logo__name">{{firma.nazev}}</span>
+            <span class="logo__sub">{{firma.podtitul}}</span>
           </span>
         </a>
 
         <nav class="main-nav" aria-label="Hlavní navigace">
           <ul>
-            <li><a href="#sluzby" data-spy="sluzby">Služby</a></li>
-            <li><a href="#reference" data-spy="reference">Reference</a></li>
-            <li><a href="#postup" data-spy="postup">Postup</a></li>
-            <li><a href="#kontakt" data-spy="kontakt">Kontakt</a></li>
+            <li><a href="#sluzby" data-spy="sluzby">{{navigace.menu.sluzby}}</a></li>
+            <li><a href="#reference" data-spy="reference">{{navigace.menu.reference}}</a></li>
+            <li><a href="#postup" data-spy="postup">{{navigace.menu.postup}}</a></li>
+            <li><a href="#kontakt" data-spy="kontakt">{{navigace.menu.kontakt}}</a></li>
           </ul>
         </nav>
 
         <div class="site-header__actions">
-          <a class="header-phone" href="tel:+420777123456">
+          <a class="header-phone" href="tel:{{telHref}}">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h3.4l1.9 4.6-2.4 1.5a11.5 11.5 0 0 0 6 6l1.5-2.4 4.6 1.9V18a3 3 0 0 1-3 3A16 16 0 0 1 2 6a3 3 0 0 1 3-3z" /></svg>
-            +420 777 123 456
+            {{firma.telefon}}
           </a>
-          <a class="btn btn--accent btn--sm header-cta" href="#poptavka">Poptat práci</a>
+          <a class="btn btn--accent btn--sm header-cta" href="#poptavka">{{navigace.tlacitko}}</a>
           <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otevřít menu" data-menu-toggle>
             <span class="menu-toggle__bar"></span>
             <span class="menu-toggle__bar"></span>
@@ -143,15 +101,15 @@
     <div class="mobile-menu" id="mobile-menu" hidden data-menu>
       <nav aria-label="Mobilní navigace">
         <ol class="mobile-menu__list">
-          <li><a href="#sluzby"><span class="mobile-menu__num">01</span>Služby</a></li>
-          <li><a href="#reference"><span class="mobile-menu__num">02</span>Reference</a></li>
-          <li><a href="#postup"><span class="mobile-menu__num">03</span>Postup</a></li>
-          <li><a href="#kontakt"><span class="mobile-menu__num">04</span>Kontakt</a></li>
+          <li><a href="#sluzby"><span class="mobile-menu__num">01</span>{{navigace.menu.sluzby}}</a></li>
+          <li><a href="#reference"><span class="mobile-menu__num">02</span>{{navigace.menu.reference}}</a></li>
+          <li><a href="#postup"><span class="mobile-menu__num">03</span>{{navigace.menu.postup}}</a></li>
+          <li><a href="#kontakt"><span class="mobile-menu__num">04</span>{{navigace.menu.kontakt}}</a></li>
         </ol>
       </nav>
       <div class="mobile-menu__foot">
-        <a class="mobile-menu__phone" href="tel:+420777123456">+420 777 123 456</a>
-        <a class="btn btn--accent btn--block" href="#poptavka">Poptat práci <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <a class="mobile-menu__phone" href="tel:{{telHref}}">{{firma.telefon}}</a>
+        <a class="btn btn--accent btn--block" href="#poptavka">{{navigace.tlacitko}} <span class="btn__arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
 
@@ -172,7 +130,7 @@
               sizes="100vw"
               width="2000"
               height="1125"
-              alt="Řemeslník v dílně brousí kov úhlovou bruskou, z kotouče létají jiskry"
+              alt="{{hero.popisFoto}}"
               fetchpriority="high"
               decoding="async"
               data-hero-img
@@ -192,65 +150,38 @@
         </div>
 
         <div class="container hero__content">
-          <p class="hero__est intro intro--1">Est. 20XX</p>
+          <p class="hero__est intro intro--1">{{hero.stitek}}</p>
 
-          <h1 class="hero-title">
-            <span class="sr-only">KUBOVO DÍLNA</span>
+          <h1 class="hero-title" style="--len: {{heroLength}}; --word: {{heroLongestWord}}">
+            <span class="sr-only">{{firma.nazev}}</span>
             <span class="hero-title__visual" aria-hidden="true">
-              <span class="hero-title__word">
-                <span class="char" style="--i: 0"><span class="char__in">K</span></span>
-                <span class="char" style="--i: 1"><span class="char__in">U</span></span>
-                <span class="char" style="--i: 2"><span class="char__in">B</span></span>
-                <span class="char char--nut" style="--i: 3">
-                  <span class="char__in">
-                    <svg class="nut" viewBox="0 0 87 100" focusable="false">
-                      <path fill-rule="evenodd" d="M43.5 0 87 25v50l-43.5 25L0 75V25zm0 30a20 20 0 1 0 0 40 20 20 0 1 0 0-40z" />
-                      <circle cx="43.5" cy="50" r="37" fill="none" stroke="#121212" stroke-opacity=".16" stroke-width="2.5" />
-                    </svg>
-                  </span>
-                </span>
-                <span class="char" style="--i: 4"><span class="char__in">V</span></span>
-                <span class="char" style="--i: 5"><span class="char__in">O</span></span>
-              </span>
-              <span class="hero-title__word">
-                <span class="char" style="--i: 6"><span class="char__in">D</span></span>
-                <span class="char" style="--i: 7"><span class="char__in">Í</span></span>
-                <span class="char" style="--i: 8"><span class="char__in">L</span></span>
-                <span class="char" style="--i: 9"><span class="char__in">N</span></span>
-                <span class="char" style="--i: 10"><span class="char__in">A</span></span>
-              </span>
+              {{heroTitleHtml}}
             </span>
           </h1>
 
-          <p class="hero__sub intro intro--2">Svařování · plech · povrchová ochrana</p>
+          <p class="hero__sub intro intro--2">{{hero.podtitulek}}</p>
 
           <div class="hero__ctas intro intro--3" data-hero-ctas>
-            <a class="btn btn--accent" href="#poptavka">Nezávazná poptávka <span class="btn__arrow" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="#reference">Prohlédnout reference <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--accent" href="#poptavka">{{hero.tlacitkoPoptavka}} <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#reference">{{hero.tlacitkoReference}} <span class="btn__arrow" aria-hidden="true">→</span></a>
           </div>
         </div>
 
         <div class="container hero__facts intro intro--4">
           <ul class="facts">
-            <li class="fact"><span class="fact__num">XX</span><span class="fact__label">let praxe</span></li>
-            <li class="fact"><span class="fact__num">XXX</span><span class="fact__label">hotových zakázek</span></li>
-            <li class="fact"><span class="fact__num">48 h</span><span class="fact__label">na nacenění</span></li>
+            {{#each hero.fakta}}
+            <li class="fact"><span class="fact__num">{{cislo}}</span><span class="fact__label">{{popisek}}</span></li>
+            {{/each}}
           </ul>
         </div>
       </section>
 
       <!-- ============ PÁS SLUŽEB ============ -->
       <div class="marquee">
-        <p class="sr-only">Svařování, ploty, brány, plechové konstrukce, opravy, lakování, žárový zinek.</p>
+        <p class="sr-only">{{marqueeText}}</p>
         <div class="marquee__track" aria-hidden="true">
-          <span class="marquee__group">
-            <span>Svařování</span><i>✕</i><span>Ploty</span><i>✕</i><span>Brány</span><i>✕</i><span>Plechové konstrukce</span><i>✕</i><span>Opravy</span><i>✕</i><span>Lakování</span><i>✕</i><span>Žárový zinek</span><i>✕</i>
-            <span>Svařování</span><i>✕</i><span>Ploty</span><i>✕</i><span>Brány</span><i>✕</i><span>Plechové konstrukce</span><i>✕</i><span>Opravy</span><i>✕</i><span>Lakování</span><i>✕</i><span>Žárový zinek</span><i>✕</i>
-          </span>
-          <span class="marquee__group">
-            <span>Svařování</span><i>✕</i><span>Ploty</span><i>✕</i><span>Brány</span><i>✕</i><span>Plechové konstrukce</span><i>✕</i><span>Opravy</span><i>✕</i><span>Lakování</span><i>✕</i><span>Žárový zinek</span><i>✕</i>
-            <span>Svařování</span><i>✕</i><span>Ploty</span><i>✕</i><span>Brány</span><i>✕</i><span>Plechové konstrukce</span><i>✕</i><span>Opravy</span><i>✕</i><span>Lakování</span><i>✕</i><span>Žárový zinek</span><i>✕</i>
-          </span>
+          <span class="marquee__group">{{#each marquee}}<span>{{this}}</span><i>✕</i>{{/each}}</span>
+          <span class="marquee__group">{{#each marquee}}<span>{{this}}</span><i>✕</i>{{/each}}</span>
         </div>
       </div>
 
@@ -259,79 +190,28 @@
         <div class="container">
           <header class="section-head">
             <div>
-              <p class="eyebrow"><span class="eyebrow__num">01</span> / Služby</p>
-              <h2 class="h2" id="sluzby-title">Co pro vás udělám</h2>
+              <p class="eyebrow"><span class="eyebrow__num">01</span> / {{navigace.menu.sluzby}}</p>
+              <h2 class="h2" id="sluzby-title">{{sluzby.nadpis}}</h2>
             </div>
-            <p class="section-head__text">
-              Od jednoho poškozeného pantu po kompletní oplocení pozemku. Zakázku zaměřím, vyrobím, osadím a postarám se o povrch.
-            </p>
+            <p class="section-head__text">{{sluzby.text}}</p>
           </header>
 
           <ul class="services-grid">
+            {{#each sluzbyKarty}}
             <li class="service-card">
               <div class="service-card__media">
-                <picture>
-                  <source type="image/webp" srcset="/img/service-ploty-480.webp 480w, /img/service-ploty-800.webp 800w, /img/service-ploty-1200.webp 1200w" sizes="(min-width: 768px) 50vw, 100vw" />
-                  <img src="/img/service-ploty-800.jpg" srcset="/img/service-ploty-480.jpg 480w, /img/service-ploty-800.jpg 800w, /img/service-ploty-1200.jpg 1200w" sizes="(min-width: 768px) 50vw, 100vw" width="1200" height="900" alt="Detail nového ocelového plotu a brány" loading="lazy" decoding="async" />
-                </picture>
+                {{obrazek}}
               </div>
               <div class="service-card__body">
-                <div class="service-card__head"><span class="service-card__num">01</span><span class="service-card__line" aria-hidden="true"></span></div>
-                <h3 class="service-card__title">Ploty a brány</h3>
-                <p class="service-card__text">Výroba a montáž plotů, plotových polí, branek, křídlových i posuvných bran. Na míru vašemu pozemku i stylu domu.</p>
+                <div class="service-card__head"><span class="service-card__num">{{cislo}}</span><span class="service-card__line" aria-hidden="true"></span></div>
+                <h3 class="service-card__title">{{nazev}}</h3>
+                <p class="service-card__text">{{popis}}</p>
                 <ul class="tags" aria-label="Zahrnuje">
-                  <li>Ploty</li><li>Brány</li><li>Branky</li><li>Pohony</li>
+                  {{#each stitky}}<li>{{this}}</li>{{/each}}
                 </ul>
               </div>
             </li>
-            <li class="service-card">
-              <div class="service-card__media">
-                <picture>
-                  <source type="image/webp" srcset="/img/service-plech-480.webp 480w, /img/service-plech-800.webp 800w, /img/service-plech-1200.webp 1200w" sizes="(min-width: 768px) 50vw, 100vw" />
-                  <img src="/img/service-plech-800.jpg" srcset="/img/service-plech-480.jpg 480w, /img/service-plech-800.jpg 800w, /img/service-plech-1200.jpg 1200w" sizes="(min-width: 768px) 50vw, 100vw" width="1200" height="900" alt="Ohýbání plechu na oplechování" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-              <div class="service-card__body">
-                <div class="service-card__head"><span class="service-card__num">02</span><span class="service-card__line" aria-hidden="true"></span></div>
-                <h3 class="service-card__title">Plechové konstrukce</h3>
-                <p class="service-card__text">Úpravy a výroba plechových prvků – oplechování, stříšky, kryty, parapety a atypické konstrukce podle výkresu nebo vzoru.</p>
-                <ul class="tags" aria-label="Zahrnuje">
-                  <li>Oplechování</li><li>Stříšky</li><li>Atypy</li>
-                </ul>
-              </div>
-            </li>
-            <li class="service-card">
-              <div class="service-card__media">
-                <picture>
-                  <source type="image/webp" srcset="/img/service-opravy-480.webp 480w, /img/service-opravy-800.webp 800w, /img/service-opravy-1200.webp 1200w" sizes="(min-width: 768px) 50vw, 100vw" />
-                  <img src="/img/service-opravy-800.jpg" srcset="/img/service-opravy-480.jpg 480w, /img/service-opravy-800.jpg 800w, /img/service-opravy-1200.jpg 1200w" sizes="(min-width: 768px) 50vw, 100vw" width="1200" height="900" alt="Svařování opravovaného kovového zábradlí" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-              <div class="service-card__body">
-                <div class="service-card__head"><span class="service-card__num">03</span><span class="service-card__line" aria-hidden="true"></span></div>
-                <h3 class="service-card__title">Opravy kovových konstrukcí</h3>
-                <p class="service-card__text">Drobné i větší opravy: přivaření, výměna prasklých dílů, panty, zámky, zábradlí, schody a nosné prvky.</p>
-                <ul class="tags" aria-label="Zahrnuje">
-                  <li>Svařování</li><li>Panty</li><li>Zábradlí</li>
-                </ul>
-              </div>
-            </li>
-            <li class="service-card">
-              <div class="service-card__media">
-                <picture>
-                  <source type="image/webp" srcset="/img/service-povrch-480.webp 480w, /img/service-povrch-800.webp 800w, /img/service-povrch-1200.webp 1200w" sizes="(min-width: 768px) 50vw, 100vw" />
-                  <img src="/img/service-povrch-800.jpg" srcset="/img/service-povrch-480.jpg 480w, /img/service-povrch-800.jpg 800w, /img/service-povrch-1200.jpg 1200w" sizes="(min-width: 768px) 50vw, 100vw" width="1200" height="900" alt="Stříkání vrchního laku na kovovou konstrukci" loading="lazy" decoding="async" />
-                </picture>
-              </div>
-              <div class="service-card__body">
-                <div class="service-card__head"><span class="service-card__num">04</span><span class="service-card__line" aria-hidden="true"></span></div>
-                <h3 class="service-card__title">Povrchová ochrana</h3>
-                <p class="service-card__text">Odrezení, základ a vrchní lak v odstínu podle RAL, případně zajištění žárového zinkování pro maximální životnost.</p>
-                <ul class="tags" aria-label="Zahrnuje">
-                  <li>Lakování</li><li>RAL</li><li>Žárový zinek</li>
-                </ul>
-              </div>
-            </li>
+            {{/each}}
           </ul>
         </div>
       </section>
@@ -348,7 +228,7 @@
               sizes="100vw"
               width="2100"
               height="900"
-              alt="Svářeč ve svářečské kukle, jasný oblouk svaru a stoupající kouř"
+              alt="{{predel.popisFoto}}"
               loading="lazy"
               decoding="async"
               data-weld-img
@@ -361,9 +241,9 @@
         <div class="container weld__content">
           <figure class="weld__quote">
             <blockquote>
-              <p>Každý svár dělám tak, jako by šel na můj vlastní plot.</p>
+              <p>{{predel.citat}}</p>
             </blockquote>
-            <figcaption>— Kuba</figcaption>
+            <figcaption>— {{predel.podpis}}</figcaption>
           </figure>
         </div>
       </section>
@@ -373,13 +253,13 @@
         <div class="container">
           <header class="section-head">
             <div>
-              <p class="eyebrow"><span class="eyebrow__num">02</span> / Reference</p>
-              <h2 class="h2" id="reference-title">Hotová práce mluví za mě</h2>
+              <p class="eyebrow"><span class="eyebrow__num">02</span> / {{navigace.menu.reference}}</p>
+              <h2 class="h2" id="reference-title">{{reference.nadpis}}</h2>
             </div>
-            <p class="section-head__text">Výběr z realizací. Klikněte na fotku pro detail, nebo rozbalte celou galerii.</p>
+            <p class="section-head__text">{{reference.text}}</p>
           </header>
 
-          <!-- Obsah galerie se generuje ze src/data/references.json -->
+          <!-- Dlaždice galerie se generují ze src/content/reference.json -->
           <div class="gallery" data-gallery>
             <div class="filters" role="group" aria-label="Filtrovat reference podle kategorie" data-gallery-filters></div>
             <div class="gallery__viewport" data-gallery-viewport>
@@ -388,9 +268,9 @@
             </div>
             <div class="gallery__footer">
               <button class="btn btn--ghost gallery__toggle" type="button" aria-expanded="false" aria-controls="gallery-grid" data-gallery-toggle>
-                Zobrazit všech 24 referencí ↓
+                Zobrazit všechny reference ↓
               </button>
-              <p class="gallery__count" aria-live="polite" data-gallery-count>Zobrazeno 6 z 24</p>
+              <p class="gallery__count" aria-live="polite" data-gallery-count></p>
             </div>
             <noscript><p class="gallery__noscript">Galerie potřebuje zapnutý JavaScript.</p></noscript>
           </div>
@@ -402,37 +282,21 @@
         <div class="container">
           <header class="section-head">
             <div>
-              <p class="eyebrow"><span class="eyebrow__num">03</span> / Postup</p>
-              <h2 class="h2" id="postup-title">Jak to probíhá</h2>
+              <p class="eyebrow"><span class="eyebrow__num">03</span> / {{navigace.menu.postup}}</p>
+              <h2 class="h2" id="postup-title">{{postup.nadpis}}</h2>
             </div>
-            <p class="section-head__text">Jednoduše a bez zbytečného papírování. Cenu znáte předem.</p>
+            <p class="section-head__text">{{postup.text}}</p>
           </header>
 
           <ol class="steps" data-steps>
+            {{#each kroky}}
             <li class="step">
               <span class="step__bar" aria-hidden="true"><span class="step__fill"></span></span>
-              <span class="step__num" aria-hidden="true">01</span>
-              <h3 class="step__title">Poptávka</h3>
-              <p class="step__text">Zavolejte nebo pošlete fotku a pár rozměrů. Ozvu se do 48 hodin.</p>
+              <span class="step__num" aria-hidden="true">{{cislo}}</span>
+              <h3 class="step__title">{{nazev}}</h3>
+              <p class="step__text">{{text}}</p>
             </li>
-            <li class="step">
-              <span class="step__bar" aria-hidden="true"><span class="step__fill"></span></span>
-              <span class="step__num" aria-hidden="true">02</span>
-              <h3 class="step__title">Zaměření</h3>
-              <p class="step__text">Přijedu na místo, změřím a domluvíme materiál, tvar i povrch.</p>
-            </li>
-            <li class="step">
-              <span class="step__bar" aria-hidden="true"><span class="step__fill"></span></span>
-              <span class="step__num" aria-hidden="true">03</span>
-              <h3 class="step__title">Výroba</h3>
-              <p class="step__text">Svařím a připravím vše v dílně, aby montáž byla rychlá a čistá.</p>
-            </li>
-            <li class="step">
-              <span class="step__bar" aria-hidden="true"><span class="step__fill"></span></span>
-              <span class="step__num" aria-hidden="true">04</span>
-              <h3 class="step__title">Montáž a ochrana</h3>
-              <p class="step__text">Osadím na místě a ošetřím lakem v RAL nebo zajistím pozink.</p>
-            </li>
+            {{/each}}
           </ol>
         </div>
       </section>
@@ -441,72 +305,68 @@
       <section class="section contact" id="kontakt" aria-labelledby="kontakt-title">
         <div class="container contact__grid">
           <div class="contact__info">
-            <p class="eyebrow"><span class="eyebrow__num">04</span> / Kontakt</p>
-            <h2 class="h2 contact__title" id="kontakt-title">Pošlete fotku, ozvu se s cenou.</h2>
+            <p class="eyebrow"><span class="eyebrow__num">04</span> / {{navigace.menu.kontakt}}</p>
+            <h2 class="h2 contact__title" id="kontakt-title">{{kontakt.nadpis}}</h2>
             <dl class="contact-list">
               <div class="contact-list__row">
-                <dt>Telefon</dt>
-                <dd><a href="tel:+420777123456">+420 777 123 456</a></dd>
+                <dt>{{kontakt.popisky.telefon}}</dt>
+                <dd><a href="tel:{{telHref}}">{{firma.telefon}}</a></dd>
               </div>
               <div class="contact-list__row">
-                <dt>E-mail</dt>
-                <dd><a href="mailto:info@kubovodilna.cz">info@kubovodilna.cz</a></dd>
+                <dt>{{kontakt.popisky.email}}</dt>
+                <dd><a href="mailto:{{firma.email}}">{{firma.email}}</a></dd>
               </div>
               <div class="contact-list__row">
-                <dt>Působnost</dt>
-                <dd>[Město] a okolí do 50 km</dd>
+                <dt>{{kontakt.popisky.pusobnost}}</dt>
+                <dd>{{firma.pusobnost}}</dd>
               </div>
               <div class="contact-list__row">
-                <dt>IČO</dt>
-                <dd>12345678</dd>
+                <dt>{{kontakt.popisky.ico}}</dt>
+                <dd>{{firma.ico}}</dd>
               </div>
             </dl>
           </div>
 
           <div class="contact__form" id="poptavka">
-            <form class="form" novalidate data-form>
-              <p class="form__intro eyebrow">Nezávazná poptávka</p>
+            {{#with kontakt.formular}}
+            <form
+              class="form"
+              novalidate
+              data-form
+              data-endpoint="{{@root.firma.poptavkyEndpoint}}"
+              data-msg-phone-format="{{chybaTelefonTvar}}"
+              data-msg-check="{{chybaKontrola}}"
+              data-msg-sending="{{odesilani}}"
+              data-msg-error="{{chybaOdeslani}}"
+              data-msg-unconfigured="Formulář zatím není napojený. Zavolejte prosím na {{@root.firma.telefon}}."
+            >
+              <p class="form__intro eyebrow">{{nadpis}}</p>
 
               <div class="form__row">
                 <div class="field">
-                  <label class="field__label" for="f-jmeno">Jméno <span class="field__req" aria-hidden="true">*</span></label>
-                  <input class="field__input" id="f-jmeno" name="jmeno" type="text" autocomplete="name" required aria-describedby="f-jmeno-err" data-msg-required="Napište prosím, jak vám můžu říkat." />
+                  <label class="field__label" for="f-jmeno">{{jmeno}} <span class="field__req" aria-hidden="true">*</span></label>
+                  <input class="field__input" id="f-jmeno" name="jmeno" type="text" autocomplete="name" required aria-describedby="f-jmeno-err" data-msg-required="{{chybaJmeno}}" />
                   <p class="field__error" id="f-jmeno-err"></p>
                 </div>
                 <div class="field">
-                  <label class="field__label" for="f-telefon">Telefon <span class="field__req" aria-hidden="true">*</span></label>
-                  <input class="field__input" id="f-telefon" name="telefon" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+420" aria-describedby="f-telefon-err" data-msg-required="Bez telefonu se vám neozvu – doplňte ho prosím." />
+                  <label class="field__label" for="f-telefon">{{telefon}} <span class="field__req" aria-hidden="true">*</span></label>
+                  <input class="field__input" id="f-telefon" name="telefon" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+420" aria-describedby="f-telefon-err" data-msg-required="{{chybaTelefon}}" />
                   <p class="field__error" id="f-telefon-err"></p>
                 </div>
               </div>
 
               <fieldset class="field chips">
-                <legend class="field__label">Co potřebujete <span class="field__hint">(lze vybrat víc)</span></legend>
+                <legend class="field__label">{{sluzbyNadpis}} <span class="field__hint">{{sluzbyNapoveda}}</span></legend>
                 <div class="chips__list">
-                  <label class="chip"><input type="checkbox" name="sluzby" value="Plot / brána" /><span>Plot / brána</span></label>
-                  <label class="chip"><input type="checkbox" name="sluzby" value="Plech" /><span>Plech</span></label>
-                  <label class="chip"><input type="checkbox" name="sluzby" value="Oprava" /><span>Oprava</span></label>
-                  <label class="chip"><input type="checkbox" name="sluzby" value="Lakování / pozink" /><span>Lakování / pozink</span></label>
+                  {{#each sluzby}}
+                  <label class="chip"><input type="checkbox" name="sluzby" value="{{this}}" /><span>{{this}}</span></label>
+                  {{/each}}
                 </div>
               </fieldset>
 
               <div class="field">
-                <label class="field__label" for="f-zprava">Zpráva</label>
-                <textarea class="field__input field__textarea" id="f-zprava" name="zprava" rows="5" placeholder="Popište, co potřebujete – rozměry, materiál, místo…"></textarea>
-              </div>
-
-              <div class="field">
-                <span class="field__label" id="f-fotky-label">Fotky <span class="field__hint">(max. 8, do 10 MB každá)</span></span>
-                <label class="dropzone" data-dropzone>
-                  <input class="dropzone__input" type="file" name="fotky" accept="image/*" multiple aria-labelledby="f-fotky-label" aria-describedby="f-fotky-help f-fotky-err" data-file-input />
-                  <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-2.5h6L17 7h3v12H4z" /><circle cx="12" cy="13" r="3.6" /></svg>
-                  <span class="dropzone__text" id="f-fotky-help">
-                    <span class="dropzone__desktop">Přetáhněte fotky sem, nebo <u>vyberte z počítače</u></span>
-                    <span class="dropzone__mobile">Vyfoťte nebo <u>vyberte z galerie</u></span>
-                  </span>
-                </label>
-                <p class="field__error" id="f-fotky-err" aria-live="polite"></p>
-                <ul class="previews" data-previews aria-label="Přiložené fotky"></ul>
+                <label class="field__label" for="f-zprava">{{zprava}}</label>
+                <textarea class="field__input field__textarea" id="f-zprava" name="zprava" rows="5" placeholder="{{zpravaNapoveda}}"></textarea>
               </div>
 
               <!-- Ochrana proti spamu (Formspree honeypot) – pole musí zůstat prázdné. -->
@@ -515,18 +375,19 @@
               </div>
 
               <button class="btn btn--accent btn--block form__submit" type="submit" data-submit>
-                <span class="form__submit-label">Odeslat poptávku</span> <span class="btn__arrow" aria-hidden="true">→</span>
+                <span class="form__submit-label">{{tlacitko}}</span> <span class="btn__arrow" aria-hidden="true">→</span>
               </button>
               <p class="form__status" role="status" aria-live="polite" data-form-status></p>
-              <p class="form__note">Údaje použiju jen k vyřízení vaší poptávky.</p>
+              <p class="form__note">{{poznamka}}</p>
             </form>
 
             <div class="form-success" hidden tabindex="-1" data-form-success>
               <span class="form-success__icon" aria-hidden="true">✓</span>
-              <h3 class="form-success__title">Díky, poptávka dorazila.</h3>
-              <p>Podívám se na ni a do 48 hodin se vám ozvu s cenou nebo doplňujícími otázkami.</p>
-              <button class="btn btn--ghost" type="button" data-form-reset>Poslat další poptávku</button>
+              <h3 class="form-success__title">{{dekujiNadpis}}</h3>
+              <p>{{dekujiText}}</p>
+              <button class="btn btn--ghost" type="button" data-form-reset>{{dalsiPoptavka}}</button>
             </div>
+            {{/with}}
           </div>
         </div>
       </section>
@@ -535,25 +396,25 @@
     <!-- ============ PATIČKA ============ -->
     <footer class="site-footer">
       <div class="container site-footer__inner">
-        <span class="site-footer__brand">KUBOVO DÍLNA</span>
-        <p class="site-footer__copy">© 2026 · Klempířství &amp; zámečnictví · [Jméno Příjmení]</p>
-        <a class="site-footer__top" href="#top">Nahoru <span aria-hidden="true">↑</span></a>
+        <span class="site-footer__brand">{{firma.nazev}}</span>
+        <p class="site-footer__copy">© {{rok}} · {{paticka.text}} · {{firma.jmeno}}</p>
+        <a class="site-footer__top" href="#top">{{paticka.nahoru}} <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
 
     <!-- ============ MOBILNÍ LIŠTA ============ -->
     <div class="mobile-bar" data-mobile-bar>
-      <a class="btn btn--ghost" href="tel:+420777123456">
+      <a class="btn btn--ghost" href="tel:{{telHref}}">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h3.4l1.9 4.6-2.4 1.5a11.5 11.5 0 0 0 6 6l1.5-2.4 4.6 1.9V18a3 3 0 0 1-3 3A16 16 0 0 1 2 6a3 3 0 0 1 3-3z" /></svg>
-        Zavolat
+        {{navigace.listaZavolat}}
       </a>
-      <a class="btn btn--accent" href="#poptavka">Poptávka <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--accent" href="#poptavka">{{navigace.listaPoptavka}} <span class="btn__arrow" aria-hidden="true">→</span></a>
     </div>
 
     <!-- ============ LIGHTBOX ============ -->
     <dialog class="lightbox" aria-labelledby="lb-title" data-lightbox>
       <div class="lightbox__top">
-        <p class="lightbox__counter" data-lb-counter>01 / 24</p>
+        <p class="lightbox__counter" data-lb-counter></p>
         <button class="lightbox__close" type="button" data-lb-close>Zavřít <span aria-hidden="true">✕</span></button>
       </div>
       <div class="lightbox__stage" data-lb-stage>

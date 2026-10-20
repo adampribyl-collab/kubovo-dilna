@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "sluzby": "Služby",
+    "reference": "Reference",
+    "postup": "Postup",
+    "kontakt": "Kontakt"
+  },
+  "tlacitko": "Poptat práci",
+  "listaZavolat": "Zavolat",
+  "listaPoptavka": "Poptávka"
+}

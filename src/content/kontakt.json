@@ -1,0 +1,30 @@
+{
+  "nadpis": "Popište zakázku, ozvu se s cenou.",
+  "popisky": {
+    "telefon": "Telefon",
+    "email": "E-mail",
+    "pusobnost": "Působnost",
+    "ico": "IČO"
+  },
+  "formular": {
+    "nadpis": "Nezávazná poptávka",
+    "jmeno": "Jméno",
+    "telefon": "Telefon",
+    "sluzbyNadpis": "Co potřebujete",
+    "sluzbyNapoveda": "(lze vybrat víc)",
+    "sluzby": ["Plot / brána", "Plech", "Oprava", "Lakování / pozink"],
+    "zprava": "Zpráva",
+    "zpravaNapoveda": "Popište, co potřebujete – rozměry, materiál, místo…",
+    "tlacitko": "Odeslat poptávku",
+    "odesilani": "Odesílám…",
+    "poznamka": "Údaje použiju jen k vyřízení vaší poptávky.",
+    "chybaJmeno": "Napište prosím, jak vám můžu říkat.",
+    "chybaTelefon": "Bez telefonu se vám neozvu – doplňte ho prosím.",
+    "chybaTelefonTvar": "Zadejte telefon ve tvaru +420 777 123 456.",
+    "chybaKontrola": "Zkontrolujte prosím zvýrazněná pole.",
+    "chybaOdeslani": "Odeslání se nepovedlo. Zkuste to prosím znovu, nebo zavolejte.",
+    "dekujiNadpis": "Díky, poptávka dorazila.",
+    "dekujiText": "Podívám se na ni a ozvu se s cenou nebo doplňujícími otázkami. Nacenění zvládnu už od 48 hodin.",
+    "dalsiPoptavka": "Poslat další poptávku"
+  }
+}

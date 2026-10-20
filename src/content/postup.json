@@ -1,0 +1,10 @@
+{
+  "nadpis": "Jak to probíhá",
+  "text": "Jednoduše a bez zbytečného papírování. Cenu znáte předem.",
+  "kroky": [
+    { "nazev": "Poptávka", "text": "Zavolejte nebo pošlete fotku a pár rozměrů. Ozvu se do 48 hodin." },
+    { "nazev": "Zaměření", "text": "Přijedu na místo, změřím a domluvíme materiál, tvar i povrch." },
+    { "nazev": "Výroba", "text": "Svařím a připravím vše v dílně, aby montáž byla rychlá a čistá." },
+    { "nazev": "Montáž a ochrana", "text": "Osadím na místě a ošetřím lakem v RAL nebo zajistím pozink." }
+  ]
+}

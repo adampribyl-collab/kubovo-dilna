@@ -86,7 +86,8 @@
   margin: 22px 0 26px;
   font-family: var(--f-display);
   font-weight: 700;
-  font-size: clamp(64px, 15vw, 216px);
+  /* velikost podle délky názvu (--len nastaví šablona), pro „KUBOVO DÍLNA“ = 15vw */
+  font-size: min(calc(180vw / var(--len, 12)), 216px);
   line-height: 0.86;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -244,7 +245,8 @@
 
 @media (max-width: 599px) {
   .hero-title {
-    font-size: min(31vw, 150px);
+    /* na mobilu každé slovo na vlastním řádku → podle nejdelšího slova (--word) */
+    font-size: min(calc(186vw / var(--word, 6)), 150px);
     line-height: 0.84;
   }
 

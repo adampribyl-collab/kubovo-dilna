@@ -26,7 +26,7 @@ export function createLightbox(dialog) {
   function renderThumbs() {
     thumbs.innerHTML = items
       .map(
-        (item, i) => `<button class="lightbox__thumb" type="button" data-index="${i}" aria-label="Fotka ${i + 1}: ${escapeHtml(item.title)}">
+        (item, i) => `<button class="lightbox__thumb" type="button" data-index="${i}" aria-label="Fotka ${i + 1}: ${escapeHtml(item.nazev)}">
           ${pictureHTML(item.image, { widths: [480], sizes: '88px', width: 480, height: 360 })}
         </button>`,
       )
@@ -48,7 +48,7 @@ export function createLightbox(dialog) {
     figure.innerHTML = pictureHTML(item.image, {
       widths: REF_WIDTHS,
       sizes: '(min-width: 1200px) 1200px, 100vw',
-      alt: item.alt || item.title,
+      alt: item.popisFoto || item.nazev,
       width: 1400,
       height: 1050,
       lazy: false,
@@ -63,9 +63,9 @@ export function createLightbox(dialog) {
     }
 
     counter.textContent = `${pad2(index + 1)} / ${pad2(items.length)}`;
-    title.textContent = item.title;
-    finish.textContent = item.finish;
-    location.textContent = item.location;
+    title.textContent = item.nazev;
+    finish.textContent = item.povrch;
+    location.textContent = item.misto;
 
     const single = items.length < 2;
     prevBtn.hidden = single;

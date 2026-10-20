@@ -1,0 +1,265 @@
+# Redakční systém webu KUBOVO DÍLNA (Sveltia CMS)
+# Dokumentace: https://sveltiacms.app/en/docs
+#
+# Redakce ukládá změny přímo do GitHub repozitáře. Každé uložení spustí GitHub Actions
+# (.github/workflows/deploy.yml), které web sestaví a nahraje na hosting.
+
+backend:
+  name: github
+  repo: adampribyl-collab/kubovo-dilna
+  branch: main
+
+# Nahrané fotky se ukládají do /photos, web z nich při sestavení vyrobí zmenšené verze.
+media_folder: /photos
+public_folder: /photos
+
+media_libraries:
+  all:
+    max_file_size: 20000000
+    # fotky z mobilu se při nahrání zmenší a převedou na WebP, ať repozitář zbytečně neroste
+    transformations:
+      raster_image:
+        format: webp
+        quality: 88
+        width: 2400
+        height: 2400
+  default:
+    config:
+      slugify_filename: true
+
+collections:
+  # ------------------------------------------------------------------ TEXTY
+  - name: texty
+    label: Texty webu
+    description: Texty jednotlivých částí stránky. Po uložení se web za 1–3 minuty sám aktualizuje.
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: firma
+        label: Firma a kontakty
+        file: src/content/firma.json
+        fields:
+          - { name: nazev, label: Název firmy, hint: "Velký nápis na úvodní obrazovce, logo a patička. První písmeno O se ve velkém nápisu nahradí maticí." }
+          - { name: podtitul, label: Podtitul pod logem }
+          - { name: jmeno, label: Jméno a příjmení, hint: Ukazuje se v patičce. }
+          - { name: telefon, label: Telefon, hint: "Ve tvaru +420 777 123 456. Použije se v hlavičce, kontaktu i tlačítku Zavolat." }
+          - { name: email, label: E-mail }
+          - { name: ico, label: IČO }
+          - name: adresa
+            label: Adresa dílny
+            widget: object
+            hint: Na webu vidět není, používá ji Google (vyhledávání a mapy).
+            fields:
+              - { name: ulice, label: Ulice a číslo popisné }
+              - { name: psc, label: PSČ }
+              - { name: mesto, label: Město }
+          - { name: pusobnost, label: Působnost, hint: "Např. Brno a okolí do 50 km" }
+          - name: oteviraciDoba
+            label: Otevírací doba (pro Google)
+            widget: object
+            fields:
+              - name: dny
+                label: Dny
+                widget: select
+                multiple: true
+                options:
+                  - { label: Pondělí, value: Monday }
+                  - { label: Úterý, value: Tuesday }
+                  - { label: Středa, value: Wednesday }
+                  - { label: Čtvrtek, value: Thursday }
+                  - { label: Pátek, value: Friday }
+                  - { label: Sobota, value: Saturday }
+                  - { label: Neděle, value: Sunday }
+              - { name: od, label: Od, hint: "např. 07:00" }
+              - { name: do, label: Do, hint: "např. 17:00" }
+          - { name: web, label: Adresa webu, hint: "Celá adresa, např. https://www.kubovodilna.cz – pro Google a sdílení na sociálních sítích." }
+          - name: poptavkyEndpoint
+            label: Formspree adresa formuláře
+            required: false
+            hint: "Adresa z formspree.io ve tvaru https://formspree.io/f/… Dokud je prázdná, formulář neodesílá a nabídne zavolat."
+
+      - name: navigace
+        label: Menu a tlačítka
+        file: src/content/navigace.json
+        fields:
+          - name: menu
+            label: Položky menu
+            widget: object
+            hint: Stejné názvy se ukazují i ve štítcích sekcí (01 / Služby…).
+            fields:
+              - { name: sluzby, label: Služby }
+              - { name: reference, label: Reference }
+              - { name: postup, label: Postup }
+              - { name: kontakt, label: Kontakt }
+          - { name: tlacitko, label: Tlačítko v hlavičce }
+          - { name: listaZavolat, label: Mobilní lišta – zavolat }
+          - { name: listaPoptavka, label: Mobilní lišta – poptávka }
+
+      - name: hero
+        label: Úvodní obrazovka
+        file: src/content/hero.json
+        fields:
+          - { name: stitek, label: Štítek nad nápisem, hint: "Např. Est. 2012" }
+          - { name: podtitulek, label: Podtitulek pod nápisem }
+          - { name: tlacitkoPoptavka, label: Tlačítko poptávka }
+          - { name: tlacitkoReference, label: Tlačítko reference }
+          - name: fakta
+            label: Tři fakta dole
+            widget: list
+            allow_add: false
+            allow_remove: false
+            summary: "{{fields.cislo}} – {{fields.popisek}}"
+            fields:
+              - { name: cislo, label: Číslo, hint: "Krátké, např. 15, 300+, od 48 h" }
+              - { name: popisek, label: Popisek }
+          - { name: popisFoto, label: Popis fotky (pro nevidomé a Google), widget: text, required: false }
+
+      - name: sluzby
+        label: Služby
+        file: src/content/sluzby.json
+        fields:
+          - name: pas
+            label: Oranžový běžící pás
+            widget: list
+            hint: Jedna služba na řádek.
+          - { name: nadpis, label: Nadpis sekce }
+          - { name: text, label: Úvodní text, widget: text }
+          - name: karty
+            label: Karty služeb
+            label_singular: službu
+            widget: list
+            summary: "{{fields.nazev}}"
+            fields:
+              - { name: nazev, label: Název }
+              - { name: popis, label: Popis, widget: text, hint: Ideálně 2–3 řádky. }
+              - { name: stitky, label: Štítky, widget: list, hint: Jeden štítek na řádek. }
+              - { name: foto, label: Fotka, widget: image, required: false, hint: "Na šířku, ideálně 4:3. Bez fotky se ukáže šrafovaná plocha." }
+              - { name: popisFoto, label: Popis fotky, required: false }
+
+      - name: predel
+        label: Citát u svářeče
+        file: src/content/predel.json
+        fields:
+          - { name: citat, label: Citát, widget: text, hint: Krátký – na webu se láme na tři řádky. }
+          - { name: podpis, label: Podpis }
+          - { name: popisFoto, label: Popis fotky, required: false }
+
+      - name: postup
+        label: Postup
+        file: src/content/postup.json
+        fields:
+          - { name: nadpis, label: Nadpis sekce }
+          - { name: text, label: Úvodní text, widget: text }
+          - name: kroky
+            label: Kroky
+            widget: list
+            allow_add: false
+            allow_remove: false
+            summary: "{{fields.nazev}}"
+            fields:
+              - { name: nazev, label: Název kroku }
+              - { name: text, label: Text, widget: text }
+
+      - name: kontakt
+        label: Kontakt a formulář
+        file: src/content/kontakt.json
+        fields:
+          - { name: nadpis, label: Nadpis sekce, hint: "Telefon, e-mail, IČO a působnost se berou z Firma a kontakty." }
+          - name: popisky
+            label: Popisky kontaktních údajů
+            widget: object
+            collapsed: true
+            fields:
+              - { name: telefon, label: Telefon }
+              - { name: email, label: E-mail }
+              - { name: pusobnost, label: Působnost }
+              - { name: ico, label: IČO }
+          - name: formular
+            label: Formulář
+            widget: object
+            fields:
+              - { name: nadpis, label: Nadpis formuláře }
+              - { name: jmeno, label: Pole Jméno }
+              - { name: telefon, label: Pole Telefon }
+              - { name: sluzbyNadpis, label: Nadpis výběru služeb }
+              - { name: sluzbyNapoveda, label: Nápověda k výběru }
+              - { name: sluzby, label: Služby k výběru, widget: list, hint: Jedna na řádek. }
+              - { name: zprava, label: Pole Zpráva }
+              - { name: zpravaNapoveda, label: Nápověda v poli Zpráva }
+              - { name: tlacitko, label: Tlačítko odeslat }
+              - { name: odesilani, label: Text při odesílání }
+              - { name: poznamka, label: Poznámka pod tlačítkem }
+              - { name: chybaJmeno, label: Chyba – chybí jméno }
+              - { name: chybaTelefon, label: Chyba – chybí telefon }
+              - { name: chybaTelefonTvar, label: Chyba – špatný telefon }
+              - { name: chybaKontrola, label: Chyba – zkontrolovat pole }
+              - { name: chybaOdeslani, label: Chyba – odeslání se nepovedlo }
+              - { name: dekujiNadpis, label: Poděkování – nadpis }
+              - { name: dekujiText, label: Poděkování – text, widget: text }
+              - { name: dalsiPoptavka, label: Tlačítko další poptávka }
+
+      - name: paticka
+        label: Patička
+        file: src/content/paticka.json
+        fields:
+          - { name: text, label: Text, hint: "Zobrazí se jako © rok · text · jméno z Firma a kontakty." }
+          - { name: nahoru, label: Odkaz nahoru }
+
+      - name: seo
+        label: Google a sdílení
+        file: src/content/seo.json
+        fields:
+          - { name: titulek, label: Titulek stránky, hint: Záložka prohlížeče a nadpis ve výsledcích Google. Ideálně do 60 znaků. }
+          - { name: popis, label: Popis ve výsledcích Google, widget: text, hint: Ideálně do 160 znaků. }
+          - { name: titulekSdileni, label: Titulek při sdílení odkazu }
+          - { name: popisSdileni, label: Popis při sdílení odkazu, widget: text }
+          - { name: popisFirmy, label: Popis firmy pro Google, widget: text }
+
+  # -------------------------------------------------------------- REFERENCE
+  - name: reference
+    label: Reference
+    description: Galerie hotových zakázek. Fotky nahrávejte na šířku, ideálně v poměru 4:3.
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: reference
+        label: Reference
+        file: src/content/reference.json
+        fields:
+          - { name: nadpis, label: Nadpis sekce }
+          - { name: text, label: Úvodní text, widget: text }
+          - name: kategorie
+            label: Názvy kategorií (filtry)
+            widget: list
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            collapsed: true
+            summary: "{{fields.nazev}}"
+            fields:
+              - { name: id, label: Kód, widget: hidden }
+              - { name: nazev, label: Název }
+          - name: polozky
+            label: Zakázky
+            label_singular: zakázku
+            widget: list
+            summary: "{{fields.nazev}}"
+            hint: Pořadí v seznamu = pořadí v galerii. Prvních 6 se ukáže hned, zbytek po rozbalení.
+            fields:
+              - { name: nazev, label: Název, hint: "Např. Posuvná brána s pohonem" }
+              - name: kategorie
+                label: Kategorie
+                widget: select
+                options:
+                  - { label: Ploty, value: ploty }
+                  - { label: Brány, value: brany }
+                  - { label: Konstrukce, value: konstrukce }
+                  - { label: Opravy, value: opravy }
+                  - { label: Povrchová ochrana, value: povrch }
+              - { name: popisek, label: Popisek pod fotkou, hint: "Krátce typ · povrch, např. Brána · pozink + lak" }
+              - { name: povrch, label: Povrchová úprava, hint: Ukáže se ve zvětšeném detailu. }
+              - { name: misto, label: Místo, hint: "Např. Brno · rodinný dům" }
+              - { name: foto, label: Fotka, widget: image, required: false, hint: "Na šířku, ideálně 4:3. Bez fotky se ukáže šrafovaná plocha." }
+              - { name: popisFoto, label: Popis fotky, required: false, hint: Co na fotce je – pro nevidomé a Google. }

@@ -3,99 +3,134 @@
 Web pro klempířství a zámečnictví. Vite + čisté HTML, CSS a vanilla JavaScript, bez frameworku.
 Výsledkem buildu je statická složka `dist/`, kterou jde nahrát na jakýkoli běžný hosting.
 
+Všechny texty, služby a reference se upravují v **redakci na adrese `/admin/`** (Sveltia CMS).
+Redakce ukládá změny do tohoto GitHub repozitáře a GitHub Actions pak web samy sestaví a nahrají na hosting.
+
+```
+redakce /admin/ ──uloží──▶ GitHub (src/content/*.json, photos/) ──▶ GitHub Actions: build ──▶ GitHub Pages (+ volitelně FTP)
+```
+
+- Web: https://adampribyl-collab.github.io/kubovo-dilna/
+- Redakce: https://adampribyl-collab.github.io/kubovo-dilna/admin/
+
 ## Spuštění
 
 Potřebujete Node.js 20 nebo novější.
 
 ```bash
 npm install        # jednou na začátku
-npm run dev        # vývojový server → http://localhost:5173
+npm run dev        # vývojový server → http://localhost:5173, redakce na http://localhost:5173/admin/
 ```
 
 Vite vypíše i adresu `Network: http://192.168.x.x:5173`. Na ní web otevřete z mobilu ve stejné Wi-Fi síti.
 
 ```bash
-npm run build      # produkční build do složky dist/
+npm run build      # obrázky + produkční build do složky dist/
 npm run preview    # náhled hotového buildu → http://localhost:4173
 ```
 
-## Nahrání na hosting
+## Redakce (úprava obsahu)
 
-1. `npm run build`
-2. Celý **obsah** složky `dist/` (ne složku samotnou) nahrajte přes FTP do kořene webu.
+Na webu otevřete `/admin/` (teď https://adampribyl-collab.github.io/kubovo-dilna/admin/). V redakci jsou dvě části:
 
-Cesty v buildu jsou relativní, takže web funguje v kořeni domény i v podsložce.
+- **Texty webu** – Firma a kontakty, Menu a tlačítka, Úvodní obrazovka, Služby, Citát u svářeče, Postup,
+  Kontakt a formulář, Patička, Google a sdílení.
+- **Reference** – zakázky v galerii včetně fotek (přidat, smazat, přeřadit).
+
+Po uložení se web za 1–3 minuty sám aktualizuje. Průběh je vidět v repozitáři na záložce **Actions**.
+Fotky se při nahrání samy zmenší a převedou na WebP, při sestavení se z nich vyrobí verze pro mobil i desktop.
+
+### Přihlášení přístupovým tokenem
+
+Redakce se přihlašuje GitHub tokenem (bez dalšího serveru):
+
+1. Uživatel potřebuje GitHub účet s přístupem k repozitáři `adampribyl-collab/kubovo-dilna`
+   (vlastník, nebo pozvaný spolupracovník: repozitář → Settings → Collaborators).
+2. Vytvoření tokenu na GitHubu: Settings → Developer settings → Personal access tokens:
+   - **vlastník repozitáře**: *Fine-grained token* → Repository access: jen `kubovo-dilna` →
+     Permissions: **Contents: Read and write**,
+   - **spolupracovník**: *Tokens (classic)* se scope **repo** (fine-grained token na cizí osobní repozitář vystavit nejde).
+3. V redakci zvolte **Přihlásit se pomocí přístupového tokenu** a token vložte. Prohlížeč si ho pamatuje.
+
+Token má platnost, kterou si při vytvoření zvolíte. Po jejím vypršení stačí vytvořit nový.
+
+### Lokální úpravy bez GitHubu
+
+Při `npm run dev` otevřete v Chrome nebo Edge `http://localhost:5173/admin/` a zvolte **Pracovat s lokálním
+repozitářem** (vyberte složku projektu). Změny se zapisují přímo do souborů a stránka se sama obnoví.
+Pak je stačí commitnout a pushnout.
+
+## Automatické nasazení (GitHub Actions)
+
+Workflow `.github/workflows/deploy.yml` se spustí po každé změně ve větvi `main`. Web sestaví a:
+
+- nasadí ho na **GitHub Pages** (https://adampribyl-collab.github.io/kubovo-dilna/),
+- pokud jsou nastavené FTP údaje, nahraje ho i na vlastní hosting.
+
+**Vlastní doména:** po koupi domény ji nastavte v repozitáři v Settings → Pages → Custom domain (a u registrátora
+DNS podle návodu GitHubu), nebo web přesuňte na hosting přes FTP. V redakci pak změňte
+**Firma a kontakty → Adresa webu**, aby odkazy pro Google a sdílení vedly na novou adresu.
+
+FTP údaje vložte v repozitáři do Settings → Secrets and variables → Actions → **New repository secret**:
+
+| Secret | Hodnota |
+| --- | --- |
+| `FTP_SERVER` | adresa FTP serveru, např. `ftp.vashosting.cz` |
+| `FTP_USERNAME` | FTP uživatel |
+| `FTP_PASSWORD` | FTP heslo |
+| `FTP_DIR` | (volitelně) složka webu na serveru končící lomítkem, např. `/www/`; bez něj kořen FTP |
+
+Ruční nasazení bez GitHubu: `npm run build` a celý **obsah** složky `dist/` nahrajte přes FTP do kořene webu.
 
 ## Fotky
 
-Originální fotky dejte do složky **`photos/`** pod těmito názvy (přípona jpg, png, webp, tif nebo avif):
+Fotky služeb a referencí nahrávejte v redakci. Úvodní fotky se mění ručně ve složce **`photos/`**:
 
 | Soubor | Co na fotce | Poměr |
 | --- | --- | --- |
-| `hero-grinder` | řemeslník s úhlovou bruskou, proud jisker, volný prostor uprostřed pro nápis | 16:9 |
-| `welder-mask` | svářeč v kukle, jasný oblouk, stoupající kouř, tmavé pozadí | 21:9 |
-| `service-ploty`, `service-plech`, `service-opravy`, `service-povrch` | detaily k jednotlivým službám | 4:3 |
-| `ref-01` … `ref-24` | hotové zakázky (podle `src/data/references.json`) | 4:3 |
+| `hero-grinder` | řemeslník s úhlovou bruskou, volný prostor uprostřed pro nápis | 16:9 |
+| `welder-mask` | svářeč v kukle u svaru, tmavé pozadí | 21:9 |
 
-Potom spusťte:
-
-```bash
-npm run images
-```
-
-Skript fotky ořízne na střed na daný poměr stran a uloží je do `public/img/` jako WebP a JPG v několika šířkách
-(např. `hero-grinder-800.webp`, `hero-grinder-1400.jpg` …). Web si pak sám vybere vhodnou velikost pro mobil nebo desktop.
-Pro obrázky, které ještě nemají fotku, skript vyrobí šrafovanou zástupnou plochu s popiskem.
+`npm run images` (spouští se i v `npm run build`) fotky ořízne na střed na daný poměr stran a uloží do `public/img/`
+jako WebP a JPG v několika šířkách. Nezměněné fotky přeskočí (`scripts/.images-manifest.json`).
+Pro služby a reference bez fotky vyrobí šrafovanou zástupnou plochu s popiskem.
 `npm run images:placeholders` zástupné plochy přegeneruje.
 
-Složku `photos/` na hosting nenahrávejte, je jen zdrojová.
-
-### Doladění animací podle skutečných fotek
+### Doladění animací podle fotek
 
 - **Jiskry v hero:** v `index.html` u `<canvas data-sparks>` nastavte `data-spark-x` a `data-spark-y` na místo,
   kde se kotouč dotýká kovu (v % šířky a výšky fotky). `data-spark-angle` určuje směr výtrysku
   (0 = doprava, 90 = dolů, 180 = doleva) a `data-spark-spread` šířku kužele.
-- **Svářečka:** u `<canvas data-weld>` nastavte `data-x` a `data-y` na bod svaru.
-- **Výřez fotky:** při ořezu na mobilu se fotka posouvá podle CSS proměnné `--hero-focus`, resp. `--weld-focus`
+- **Svářečka:** u `<canvas data-weld>` nastavte `data-x` a `data-y` na bod svaru, `data-wind` unášení kouře.
+- **Výřez fotky:** na mobilu se fotka posouvá podle CSS proměnné `--hero-focus`, resp. `--weld-focus`
   (`src/styles/hero.css`, `src/styles/sections.css`). Pozice jisker se přepočítá automaticky.
-
-## Reference
-
-Galerie se generuje ze souboru `src/data/references.json`. Novou referenci přidáte takto:
-
-1. Do `items` přidejte položku (`image`, `title`, `category`, `caption`, `finish`, `location`, `alt`).
-2. Fotku dejte do `photos/` pod názvem z `image` (např. `ref-25.jpg`) a spusťte `npm run images`.
-
-Kategorie (filtry) jsou v `categories` v témže souboru. Počty v tlačítkách se přepočítají samy.
 
 ## Poptávkový formulář
 
-Formulář se odesílá přes [Formspree](https://formspree.io). Založte si formulář a jeho endpoint vložte
-do konstanty `FORMSPREE_ENDPOINT` v `src/js/form.js`. V tomtéž souboru je i komentář, jak formulář přepojit na jinou službu
-nebo vlastní skript. Bez nastaveného endpointu se při vývoji odeslání jen simuluje, v produkci se zobrazí chyba s telefonem.
+Formulář se odesílá přes [Formspree](https://formspree.io). Založte si formulář a jeho adresu
+(`https://formspree.io/f/…`) vložte v redakci do **Firma a kontakty → Formspree adresa formuláře**.
+Bez adresy se při vývoji odeslání jen simuluje, na webu se zobrazí výzva zavolat. Jak formulář přepojit
+na jinou službu nebo vlastní skript, popisuje komentář v `src/js/form.js`.
 
-Přílohy (fotky) Formspree přijímá jen v placeném tarifu.
+## Co je potřeba doplnit (v redakci)
 
-## Co je potřeba doplnit
-
-Zástupné údaje, které je potřeba nahradit skutečnými:
-
-- `EST. 20XX`, `XX let praxe`, `XXX hotových zakázek` (hero v `index.html`)
-- `[Město]`, `[Jméno Příjmení]`, IČO, telefon a e-mail (kontakt, patička, JSON-LD v `<head>`)
-- `[Obec]` u referencí v `src/data/references.json`
-- doménu `kubovodilna.cz` v `index.html` (canonical, Open Graph, JSON-LD), `public/robots.txt` a `public/sitemap.xml`
-- adresu a otevírací dobu ve strukturovaných datech (JSON-LD v `index.html`)
-- `public/og-image.jpg` (náhled při sdílení na sociálních sítích, 1200 × 630 px), pokud chcete vlastní
+- Firma a kontakty: jméno, telefon, e-mail, IČO, adresa, působnost, otevírací doba, adresa webu
+- Úvodní obrazovka: rok založení (`Est. 20XX`), roky praxe a počet zakázek (`XX`, `XXX`)
+- Reference: skutečné zakázky s fotkami (teď jsou tam smyšlené ukázky s `[Obec]`)
+- `public/og-image.jpg` – náhled při sdílení odkazu (1200 × 630 px), pokud chcete vlastní
 
 ## Struktura
 
 ```
-index.html                 obsah stránky (všechny sekce)
-src/main.js                vstupní bod
-src/styles/                styly (tokeny a základ, hlavička, hero, sekce, galerie, kontakt)
-src/js/                    navigace, galerie, lightbox, formulář, canvas animace
-src/data/references.json   data galerie
-scripts/build-images.mjs   generátor obrázků
-photos/                    zdrojové fotky (nenahrávat na hosting)
-public/                    soubory kopírované do buildu beze změny (obrázky, ikony, robots.txt)
+index.html                   šablona stránky (Handlebars), texty doplňuje scripts/content-plugin.mjs
+src/content/*.json           obsah webu – upravuje redakce
+src/main.js                  vstupní bod
+src/styles/                  styly (tokeny a základ, hlavička, hero, sekce, galerie, kontakt)
+src/js/                      navigace, galerie, lightbox, formulář, canvas animace
+public/admin/                redakce (Sveltia CMS) – index.html + config.yml
+scripts/content-plugin.mjs   vkládá obsah do HTML, generuje robots.txt a sitemap.xml
+scripts/build-images.mjs     generátor obrázků
+photos/                      zdrojové fotky (nenahrávat na hosting)
+public/                      soubory kopírované do buildu beze změny (obrázky, ikony)
+.github/workflows/deploy.yml sestavení a nasazení po každé změně
 ```

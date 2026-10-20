@@ -6,13 +6,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build-images.mjs && vite build",
     "preview": "vite preview",
     "images": "node scripts/build-images.mjs",
     "images:placeholders": "node scripts/build-images.mjs --placeholders"
   },
   "devDependencies": {
+    "handlebars": "^4.7.10",
     "sharp": "^0.35.5",
     "vite": "^8.3.4"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
