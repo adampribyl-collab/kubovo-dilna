@@ -30,7 +30,7 @@
       "popisek": "Brána · pozink + lak",
       "povrch": "Žárový zinek + lak RAL 7016",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Antracitová posuvná brána s elektrickým pohonem u vjezdu k rodinnému domu"
     },
     {
@@ -39,7 +39,7 @@
       "popisek": "Plot · RAL 7016",
       "povrch": "Základ + lak RAL 7016",
       "misto": "[Obec] · zahrada",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Dlouhý plot ze svislých jeklů v antracitové barvě podél zahrady"
     },
     {
@@ -48,7 +48,7 @@
       "popisek": "Plech · titanzinek",
       "povrch": "Titanzinkový plech, přírodní",
       "misto": "[Obec] · bytový dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Nové oplechování atiky ploché střechy z titanzinkového plechu"
     },
     {
@@ -57,7 +57,7 @@
       "popisek": "Oprava · svařování",
       "povrch": "Přivaření, základ + lak RAL 9005",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Opravené kovové zábradlí venkovního schodiště"
     },
     {
@@ -66,7 +66,7 @@
       "popisek": "Povrch · RAL 9005",
       "povrch": "Odrezení, základ + lak RAL 9005",
       "misto": "[Obec] · vila",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Kovaný plot po odrezení a novém černém nátěru"
     },
     {
@@ -75,7 +75,7 @@
       "popisek": "Branka · lak",
       "povrch": "Základ + lak RAL 7016",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Vstupní branka s integrovanou poštovní schránkou"
     },
     {
@@ -84,7 +84,7 @@
       "popisek": "Konstrukce · pozink",
       "povrch": "Žárový zinek",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Pozinkovaný kovový přístřešek na tři popelnice"
     },
     {
@@ -93,7 +93,7 @@
       "popisek": "Plot · pozink",
       "povrch": "Žárový zinek",
       "misto": "[Obec] · firemní areál",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Plotová pole z tahokovu v pozinkovaném rámu"
     },
     {
@@ -102,7 +102,7 @@
       "popisek": "Oprava · panty",
       "povrch": "Nové panty, základ + lak",
       "misto": "[Obec] · statek",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Detail nově přivařených pantů na staré vjezdové bráně"
     },
     {
@@ -111,7 +111,7 @@
       "popisek": "Brána · RAL 9005",
       "povrch": "Základ + lak RAL 9005",
       "misto": "[Obec] · vila",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Černá dvoukřídlá brána s kovanými ozdobnými prvky"
     },
     {
@@ -120,7 +120,7 @@
       "popisek": "Povrch · RAL 7016",
       "povrch": "Odrezení, základ + lak RAL 7016",
       "misto": "[Obec] · bytový dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Balkonové zábradlí po přebroušení a novém antracitovém nátěru"
     },
     {
@@ -129,7 +129,7 @@
       "popisek": "Plech · RAL 7016",
       "povrch": "Lakovaný plech RAL 7016",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Plechová stříška nad vstupními dveřmi na kovových konzolách"
     },
     {
@@ -138,7 +138,7 @@
       "popisek": "Brána · pozink",
       "povrch": "Žárový zinek",
       "misto": "[Obec] · dílna",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Pětimetrová samonosná posuvná brána v pozinkovaném provedení"
     },
     {
@@ -147,7 +147,7 @@
       "popisek": "Plot · pozink + lak",
       "povrch": "Žárový zinek + lak RAL 6005",
       "misto": "[Obec] · zahrada",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Zelený plot z panelů na betonových podhrabových deskách"
     },
     {
@@ -156,7 +156,7 @@
       "popisek": "Oprava · svařování",
       "povrch": "Nový sloupek, základ + lak",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Nově osazený a přivařený plotový sloupek"
     },
     {
@@ -165,7 +165,7 @@
       "popisek": "Brána · RAL 7016",
       "povrch": "Žárový zinek + lak RAL 7016",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Křídlová brána s výplní z tahokovu v antracitové barvě"
     },
     {
@@ -174,7 +174,7 @@
       "popisek": "Povrch · žárový zinek",
       "povrch": "Žárové zinkování ve zinkovně",
       "misto": "[Obec] · zemědělský areál",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Rám vrat po žárovém zinkování připravený k montáži"
     },
     {
@@ -183,7 +183,7 @@
       "popisek": "Konstrukce · lak",
       "povrch": "Základ + lak RAL 9006",
       "misto": "[Obec] · garáž",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Svařený ocelový rám garážových vrat"
     },
     {
@@ -192,7 +192,7 @@
       "popisek": "Plot · RAL 7016",
       "povrch": "Žárový zinek + lak RAL 7016",
       "misto": "[Obec] · terasa",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Neprůhledný lamelový plot oddělující terasu"
     },
     {
@@ -201,7 +201,7 @@
       "popisek": "Oprava · svařování + lak",
       "povrch": "Nové výztuhy, základ + lak",
       "misto": "[Obec] · statek",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Opravená velká vrata stodoly s novými kovovými výztuhami"
     },
     {
@@ -210,7 +210,7 @@
       "popisek": "Brána · RAL 7016",
       "povrch": "Základ + lak RAL 7016",
       "misto": "[Obec] · rodinný dům",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Sestava křídlové brány a branky ve stejném designu"
     },
     {
@@ -219,7 +219,7 @@
       "popisek": "Konstrukce · základ + lak",
       "povrch": "Základ + lak RAL 7035",
       "misto": "[Obec] · dílna",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Ocelové schodiště s podestou a zábradlím vedoucí do patra dílny"
     },
     {
@@ -228,7 +228,7 @@
       "popisek": "Plot · pozink",
       "povrch": "Žárový zinek",
       "misto": "[Obec] · sad",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Plot ze svařovaných pozinkovaných sítí kolem ovocného sadu"
     },
     {
@@ -237,7 +237,7 @@
       "popisek": "Povrch · RAL 6005",
       "povrch": "Odrezení, základ + lak RAL 6005",
       "misto": "[Obec] · chalupa",
-      "foto": "",
+      "foto": "/photos/hero-grinder.png",
       "popisFoto": "Stará branka po odrezení a novém zeleném nátěru"
     }
   ]
