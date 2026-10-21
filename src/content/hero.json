@@ -5,16 +5,16 @@
   "tlacitkoReference": "Prohlédnout reference",
   "fakta": [
     {
-      "cislo": "XX",
+      "cislo": "11",
       "popisek": "let praxe"
     },
     {
-      "cislo": "XXX",
+      "cislo": "50+",
       "popisek": "hotových zakázek"
     },
     {
-      "cislo": "od 48 h",
-      "popisek": "na nacenění"
+      "cislo": "od týdne",
+      "popisek": "hotové nacenění"
     }
   ],
   "popisFoto": "Řemeslník v dílně brousí kov úhlovou bruskou, z kotouče létají jiskry"
