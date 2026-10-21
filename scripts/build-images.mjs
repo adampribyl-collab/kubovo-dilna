@@ -14,7 +14,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { imageName, refFallback, serviceFallback } from '../src/js/image-name.js';
+import { imageName, refFallback, serviceFallback, REF_PREFIX, SERVICE_PREFIX } from '../src/js/image-name.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC_DIR = path.join(ROOT, 'photos');
@@ -37,9 +37,9 @@ const reference = await content('reference.json');
 const IMAGES = [
   { name: 'hero-grinder', size: 'hero', label: 'Řemeslník s úhlovou bruskou, proud jisker', glow: [0.68, 0.62], labelPos: 'top-left' },
   { name: 'welder-mask', size: 'wide', label: 'Svářeč v kukle, oblouk a stoupající kouř', glow: [0.62, 0.58], labelPos: 'top-right' },
-  ...sluzby.karty.map((k, i) => ({ name: imageName(k.foto, serviceFallback(i)), foto: k.foto, size: 'service', label: k.nazev })),
-  ...reference.polozky.map((r, i) => ({ name: imageName(r.foto, refFallback(i)), foto: r.foto, size: 'ref', label: r.nazev })),
-];
+  ...sluzby.karty.map((k, i) => ({ name: imageName(k.foto, serviceFallback(i), SERVICE_PREFIX), foto: k.foto, size: 'service', label: k.nazev })),
+  ...reference.polozky.map((r, i) => ({ name: imageName(r.foto, refFallback(i), REF_PREFIX), foto: r.foto, size: 'ref', label: r.nazev })),
+].filter((img, i, all) => all.findIndex((other) => other.name === img.name) === i); // stejná fotka u více položek = jeden obrázek
 
 const exists = (p) => access(p).then(() => true, () => false);
 const xml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[c]);

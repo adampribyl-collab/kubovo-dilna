@@ -6,7 +6,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Handlebars from 'handlebars';
-import { imageName, serviceFallback } from '../src/js/image-name.js';
+import { imageName, serviceFallback, SERVICE_PREFIX } from '../src/js/image-name.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const CONTENT_DIR = path.join(ROOT, 'src', 'content');
@@ -142,7 +142,7 @@ function buildContext(c) {
       ...karta,
       cislo: pad(i),
       obrazek: safe(
-        picture(imageName(karta.foto, serviceFallback(i)), {
+        picture(imageName(karta.foto, serviceFallback(i), SERVICE_PREFIX), {
           widths: [480, 800, 1200],
           sizes: '(min-width: 768px) 50vw, 100vw',
           alt: karta.popisFoto || karta.nazev,

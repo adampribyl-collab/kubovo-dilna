@@ -1,6 +1,6 @@
 import data from '../content/reference.json';
 import { pictureHTML, escapeHtml, plural, prefersReducedMotion, afterTransition } from './utils.js';
-import { imageName, refFallback } from './image-name.js';
+import { imageName, refFallback, REF_PREFIX } from './image-name.js';
 
 const HEIGHT_MS = 400; // délka animace rozbalení (shodná s CSS .gallery__viewport)
 
@@ -20,7 +20,7 @@ export function initGallery(lightbox) {
 
   // Data spravuje redakce (src/content/reference.json); název obrázku se odvodí z nahrané fotky.
   const labels = Object.fromEntries(data.kategorie.map((c) => [c.id, c.nazev]));
-  const items = data.polozky.map((it, i) => ({ ...it, image: imageName(it.foto, refFallback(i)) }));
+  const items = data.polozky.map((it, i) => ({ ...it, image: imageName(it.foto, refFallback(i), REF_PREFIX) }));
 
   /* --- vykreslení filtrů a dlaždic --------------------------------------- */
   // jen kategorie, ve kterých něco je

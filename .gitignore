@@ -1,3 +1,6 @@
 node_modules
 dist
 .DS_Store
+
+# zmenšeniny fotek z redakce – vyrábí je build (npm run images)
+public/img/foto-*
