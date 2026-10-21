@@ -253,12 +253,14 @@
   .hero-title__visual {
     flex-direction: column;
     align-items: center;
-    gap: 0.02em;
+    /* mezera mezi řádky, aby čárka nad Í nezasahovala do horního řádku */
+    gap: 0.15em;
   }
 
   .hero__content {
-    padding-top: calc(var(--header-h) + 36px);
-    padding-bottom: 36px;
+    /* blok o kus výš než střed – nápis na dva řádky potřebuje víc místa */
+    padding-top: calc(var(--header-h) + 20px);
+    padding-bottom: 52px;
   }
 
   .hero__ctas {
