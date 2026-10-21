@@ -1,33 +1,58 @@
 {
-  "pas": ["Svařování", "Ploty", "Brány", "Plechové konstrukce", "Opravy", "Lakování", "Žárový zinek"],
+  "pas": [
+    "Svařování",
+    "Ploty",
+    "Brány",
+    "Plechové konstrukce",
+    "Opravy a renovace",
+    "Lakování",
+    "Žárový zinek"
+  ],
   "nadpis": "Co pro vás udělám",
-  "text": "Od jednoho poškozeného pantu po kompletní oplocení pozemku. Zakázku zaměřím, vyrobím, osadím a postarám se o povrch.",
+  "text": "Od jednoho poškozeného pantu po kompletní oplocení pozemku. Zakázku zaměřím, vyrobím, dovezu a osadím.",
   "karty": [
     {
       "nazev": "Ploty a brány",
       "popis": "Výroba a montáž plotů, plotových polí, branek, křídlových i posuvných bran. Na míru vašemu pozemku i stylu domu.",
-      "stitky": ["Ploty", "Brány", "Branky", "Pohony"],
+      "stitky": [
+        "Ploty",
+        "Brány",
+        "Branky",
+        "Pohony"
+      ],
       "foto": "",
       "popisFoto": "Detail nového ocelového plotu a brány"
     },
     {
       "nazev": "Plechové konstrukce",
       "popis": "Úpravy a výroba plechových prvků – oplechování, stříšky, kryty, parapety a atypické konstrukce podle výkresu nebo vzoru.",
-      "stitky": ["Oplechování", "Stříšky", "Atypy"],
+      "stitky": [
+        "Oplechování",
+        "Stříšky",
+        "Atypy"
+      ],
       "foto": "",
       "popisFoto": "Ohýbání plechu na oplechování"
     },
     {
       "nazev": "Opravy kovových konstrukcí",
       "popis": "Drobné i větší opravy: přivaření, výměna prasklých dílů, panty, zámky, zábradlí, schody a nosné prvky.",
-      "stitky": ["Svařování", "Panty", "Zábradlí"],
+      "stitky": [
+        "Svařování",
+        "Panty",
+        "Zábradlí"
+      ],
       "foto": "",
       "popisFoto": "Svařování opravovaného kovového zábradlí"
     },
     {
       "nazev": "Povrchová ochrana",
       "popis": "Odrezení, základ a vrchní lak v odstínu podle RAL, případně zajištění žárového zinkování pro maximální životnost.",
-      "stitky": ["Lakování", "RAL", "Žárový zinek"],
+      "stitky": [
+        "Lakování",
+        "RAL",
+        "Žárový zinek"
+      ],
       "foto": "",
       "popisFoto": "Stříkání vrchního laku na kovovou konstrukci"
     }
