@@ -112,7 +112,7 @@ Poptávky se posílají e-mailem přes [Formspree](https://formspree.io) (zdarma
 1. Na formspree.io si založte účet. Poptávky chodí na e-mail účtu (další adresy lze přidat v Settings → Linked emails).
 2. Vytvořte nový formulář (**+ New Form**) a zkopírujte jeho adresu `https://formspree.io/f/…`.
 3. V redakci ji vložte do **Firma a kontakty → Formulář pro poptávky (Formspree)** a uložte.
-4. První poptávku Formspree podrží, dokud ji nepotvrdíte v e-mailu (ochrana proti zneužití).
+4. E-mail účtu musí být ověřený (Formspree pošle potvrzovací odkaz), jinak poptávky nedorazí.
 
 E-mail obsahuje pole Jméno, Telefon, Co potřebuje a Zpráva. Bez nastaveného formuláře se při vývoji odeslání
 jen simuluje, na webu se zobrazí výzva zavolat. Jak formulář přepojit na jinou službu nebo vlastní skript,
