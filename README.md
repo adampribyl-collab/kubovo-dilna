@@ -107,14 +107,20 @@ Pro služby a reference bez fotky vyrobí šrafovanou zástupnou plochu s popisk
 
 ## Poptávkový formulář
 
-Formulář se odesílá přes [Formspree](https://formspree.io). Založte si formulář a jeho adresu
-(`https://formspree.io/f/…`) vložte v redakci do **Firma a kontakty → Formspree adresa formuláře**.
-Bez adresy se při vývoji odeslání jen simuluje, na webu se zobrazí výzva zavolat. Jak formulář přepojit
-na jinou službu nebo vlastní skript, popisuje komentář v `src/js/form.js`.
+Poptávky se posílají e-mailem přes [Formspree](https://formspree.io) (zdarma 50 poptávek měsíčně):
+
+1. Na formspree.io si založte účet. Poptávky chodí na e-mail účtu (další adresy lze přidat v Settings → Linked emails).
+2. Vytvořte nový formulář (**+ New Form**) a zkopírujte jeho adresu `https://formspree.io/f/…`.
+3. V redakci ji vložte do **Firma a kontakty → Formulář pro poptávky (Formspree)** a uložte.
+4. První poptávku Formspree podrží, dokud ji nepotvrdíte v e-mailu (ochrana proti zneužití).
+
+E-mail obsahuje pole Jméno, Telefon, Co potřebuje a Zpráva. Bez nastaveného formuláře se při vývoji odeslání
+jen simuluje, na webu se zobrazí výzva zavolat. Jak formulář přepojit na jinou službu nebo vlastní skript,
+popisuje komentář v `src/js/form.js`.
 
 ## Co je potřeba doplnit (v redakci)
 
-- Firma a kontakty: jméno, telefon, e-mail, IČO, adresa, působnost, otevírací doba, adresa webu
+- Firma a kontakty: jméno, telefon, e-mail, IČO, adresa, působnost, otevírací doba, adresa webu, formulář Formspree
 - Úvodní obrazovka: rok založení (`Est. 20XX`), roky praxe a počet zakázek (`XX`, `XXX`)
 - Reference: skutečné zakázky s fotkami (teď jsou tam smyšlené ukázky s `[Obec]`)
 - `public/og-image.jpg` – náhled při sdílení odkazu (1200 × 630 px), pokud chcete vlastní

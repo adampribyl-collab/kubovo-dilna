@@ -333,7 +333,7 @@
               class="form"
               novalidate
               data-form
-              data-endpoint="{{@root.firma.poptavkyEndpoint}}"
+              data-formspree="{{@root.firma.poptavkyFormspree}}"
               data-msg-phone-format="{{chybaTelefonTvar}}"
               data-msg-check="{{chybaKontrola}}"
               data-msg-sending="{{odesilani}}"
@@ -369,7 +369,7 @@
                 <textarea class="field__input field__textarea" id="f-zprava" name="zprava" rows="5" placeholder="{{zpravaNapoveda}}"></textarea>
               </div>
 
-              <!-- Ochrana proti spamu (Formspree honeypot) – pole musí zůstat prázdné. -->
+              <!-- Ochrana proti spamu (Formspree honeypot) – lidé pole nevidí, roboti ho vyplní. -->
               <div class="hp" aria-hidden="true">
                 <label>Nevyplňujte <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
               </div>

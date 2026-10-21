@@ -77,10 +77,10 @@ collections:
               - { name: od, label: Od, hint: "např. 07:00" }
               - { name: do, label: Do, hint: "např. 17:00" }
           - { name: web, label: Adresa webu, hint: "Celá adresa, např. https://www.kubovodilna.cz – pro Google a sdílení na sociálních sítích." }
-          - name: poptavkyEndpoint
-            label: Formspree adresa formuláře
+          - name: poptavkyFormspree
+            label: Formulář pro poptávky (Formspree)
             required: false
-            hint: "Adresa z formspree.io ve tvaru https://formspree.io/f/… Dokud je prázdná, formulář neodesílá a nabídne zavolat."
+            hint: "Adresa formuláře z formspree.io (https://formspree.io/f/…) nebo jen jeho ID. Poptávky chodí na e-mail účtu Formspree. Dokud je prázdné, formulář neodesílá a nabídne zavolat."
 
       - name: navigace
         label: Menu a tlačítka

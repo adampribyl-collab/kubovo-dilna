@@ -1,39 +1,56 @@
 /* ==========================================================================
    Poptávkový formulář
    --------------------------------------------------------------------------
-   Odesílání přes Formspree (https://formspree.io):
-   1. Založte formulář na formspree.io a zkopírujte jeho adresu (https://formspree.io/f/…).
-   2. Vložte ji v redakci do Firma a kontakty → „Formspree adresa formuláře“
-      (do HTML se propíše jako data-endpoint na <form>).
+   Odesílání e-mailem přes Formspree (https://formspree.io), bez vlastního serveru:
+   1. Na formspree.io si založte účet (e-mail účtu = kam chodí poptávky) a nový formulář.
+   2. Jeho adresu (https://formspree.io/f/…) nebo jen ID vložte v redakci do
+      Firma a kontakty → „Formulář pro poptávky (Formspree)“ (do HTML jako data-formspree).
 
-   Jak přepojit jinam: sendForm() dostane hotová FormData (jmeno, telefon,
-   sluzby[], zprava). Stačí jako adresu zadat vlastní skript (PHP mailer na
-   hostingu, Getform, Web3Forms…) – musí přijmout POST a vrátit HTTP 2xx
-   při úspěchu. Pokud služba chce JSON, upravte sendForm().
+   Jak přepojit jinam: sendForm() dostane hotová FormData. Stačí jako adresu
+   zadat jinou službu nebo vlastní skript (např. PHP mailer na hostingu),
+   který přijme POST a při úspěchu vrátí HTTP 2xx.
    Texty hlášek se berou z data-msg-* atributů (redakce → Kontakt a formulář).
    ========================================================================== */
+
+/** „abcd1234“ i „https://formspree.io/f/abcd1234“ → celá adresa formuláře */
+function formspreeUrl(value) {
+  const v = String(value || '').trim();
+  if (!v) return '';
+  return /^https?:\/\//.test(v) ? v : `https://formspree.io/f/${v.replace(/^\/?f\//, '')}`;
+}
 
 async function sendForm(endpoint, formData, msg) {
   if (!endpoint) {
     if (import.meta.env.DEV) {
-      // Při vývoji bez adresy jen simulujeme úspěšné odeslání.
-      console.warn('[formulář] Adresa pro odesílání není nastavená – odeslání je pouze simulované.');
+      // Při vývoji bez formuláře jen simulujeme úspěšné odeslání.
+      console.warn('[formulář] Formulář pro poptávky není nastavený – odeslání je pouze simulované.');
       await new Promise((r) => setTimeout(r, 1200));
       return;
     }
     throw new Error(msg.unconfigured);
   }
 
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    body: formData,
-    headers: { Accept: 'application/json' },
-  });
+  const res = await fetch(endpoint, { method: 'POST', body: formData, headers: { Accept: 'application/json' } });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     const detail = body.errors?.map((e) => e.message).join(', ');
     throw new Error(detail ? `${msg.error} (${detail})` : msg.error);
   }
+}
+
+/** Data pro e-mail: srozumitelné české názvy polí, vybrané služby v jednom řádku. */
+function buildEmail(form) {
+  const field = (name) => form.elements[name]?.value.trim() || '';
+  const services = [...form.querySelectorAll('input[name="sluzby"]:checked')].map((el) => el.value);
+  const data = new FormData();
+  data.set('_subject', `Nová poptávka z webu – ${field('jmeno')}`);
+  data.set('Jméno', field('jmeno'));
+  data.set('Telefon', field('telefon'));
+  data.set('Co potřebuje', services.join(', ') || '–');
+  data.set('Zpráva', field('zprava') || '–');
+  // ochrana proti spamu: vyplněné skryté pole = robot (Formspree takovou zprávu zahodí)
+  if (field('_gotcha')) data.set('_gotcha', field('_gotcha'));
+  return data;
 }
 
 export function initForm() {
@@ -45,7 +62,7 @@ export function initForm() {
   const submitText = submitLabel.textContent;
   const status = form.querySelector('[data-form-status]');
   const fields = [...form.querySelectorAll('input[required], textarea[required]')];
-  const endpoint = form.dataset.endpoint?.trim();
+  const endpoint = formspreeUrl(form.dataset.formspree);
   const msg = {
     phoneFormat: form.dataset.msgPhoneFormat,
     check: form.dataset.msgCheck,
@@ -99,12 +116,9 @@ export function initForm() {
       return;
     }
 
-    const formData = new FormData(form);
-    formData.append('_subject', `Nová poptávka z webu – ${formData.get('jmeno')}`);
-
     setSending(true);
     try {
-      await sendForm(endpoint, formData, msg);
+      await sendForm(endpoint, buildEmail(form), msg);
       form.hidden = true;
       success.hidden = false;
       success.focus();
