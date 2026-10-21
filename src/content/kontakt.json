@@ -12,7 +12,13 @@
     "telefon": "Telefon",
     "sluzbyNadpis": "Co potřebujete",
     "sluzbyNapoveda": "(lze vybrat víc)",
-    "sluzby": ["Plot / brána", "Plech", "Oprava", "Lakování / pozink"],
+    "sluzby": [
+      "Plot / brána",
+      "Plech",
+      "Oprava",
+      "Lakování / pozink",
+      "Jiné"
+    ],
     "zprava": "Zpráva",
     "zpravaNapoveda": "Popište, co potřebujete – rozměry, materiál, místo…",
     "tlacitko": "Odeslat poptávku",
