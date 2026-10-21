@@ -8,6 +8,9 @@ backend:
   name: github
   repo: adampribyl-collab/kubovo-dilna
   branch: main
+  # přihlašovací služba pro tlačítko „Přihlásit se přes GitHub“ (Cloudflare Worker sveltia-cms-auth,
+  # GitHub OAuth App „Redakce webů“). Bez ní funguje jen přihlášení tokenem.
+  base_url: https://sveltia-cms-auth.adam-pribyl.workers.dev
 
 # Nahrané fotky se ukládají do /photos, web z nich při sestavení vyrobí zmenšené verze.
 media_folder: /photos
