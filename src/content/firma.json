@@ -1,16 +1,16 @@
 {
   "nazev": "KUBOVO DÍLNA",
   "podtitul": "klempířství · zámečnictví",
-  "jmeno": "[Jméno Příjmení]",
-  "telefon": "+420 777 123 456",
-  "email": "info@kubovodilna.cz",
-  "ico": "12345678",
+  "jmeno": "Kuba Pěkný",
+  "telefon": "+420 774 281 315",
+  "email": "jakubpenky97@gmail.com",
+  "ico": "24411221",
   "adresa": {
-    "ulice": "[Ulice a číslo popisné]",
-    "psc": "[PSČ]",
-    "mesto": "[Město]"
+    "ulice": "Americká 810",
+    "psc": "252 29",
+    "mesto": "Dobřichovice"
   },
-  "pusobnost": "[Město] a okolí do 50 km",
+  "pusobnost": "Dobřichovice a okolí",
   "oteviraciDoba": {
     "dny": [
       "Monday",
