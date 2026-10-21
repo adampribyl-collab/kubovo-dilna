@@ -1,12 +1,21 @@
 {
-  "stitek": "Est. 20XX",
-  "podtitulek": "Svařování · plech · povrchová ochrana",
+  "stitek": "Est. 2016",
+  "podtitulek": "Svařování · lakování  · zámečnictví",
   "tlacitkoPoptavka": "Nezávazná poptávka",
   "tlacitkoReference": "Prohlédnout reference",
   "fakta": [
-    { "cislo": "XX", "popisek": "let praxe" },
-    { "cislo": "XXX", "popisek": "hotových zakázek" },
-    { "cislo": "od 48 h", "popisek": "na nacenění" }
+    {
+      "cislo": "XX",
+      "popisek": "let praxe"
+    },
+    {
+      "cislo": "XXX",
+      "popisek": "hotových zakázek"
+    },
+    {
+      "cislo": "od 48 h",
+      "popisek": "na nacenění"
+    }
   ],
   "popisFoto": "Řemeslník v dílně brousí kov úhlovou bruskou, z kotouče létají jiskry"
 }
