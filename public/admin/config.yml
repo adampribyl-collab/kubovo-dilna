@@ -192,7 +192,7 @@ collections:
               - { name: zpravaNapoveda, label: Nápověda v poli Zpráva }
               - { name: tlacitko, label: Tlačítko odeslat }
               - { name: odesilani, label: Text při odesílání }
-              - { name: poznamka, label: Poznámka pod tlačítkem }
+              - { name: poznamka, label: Věta o zpracování údajů pod tlačítkem, hint: Celá věta je odkazem na stránku Zásady zpracování osobních údajů. }
               - { name: chybaJmeno, label: Chyba – chybí jméno }
               - { name: chybaTelefon, label: Chyba – chybí telefon }
               - { name: chybaTelefonTvar, label: Chyba – špatný telefon }
@@ -208,6 +208,14 @@ collections:
         fields:
           - { name: text, label: Text, hint: "Zobrazí se jako © rok · text · jméno z Firma a kontakty." }
           - { name: nahoru, label: Odkaz nahoru }
+
+      - name: zasady
+        label: Zásady ochrany osobních údajů
+        file: src/content/zasady.json
+        fields:
+          - { name: nadpis, label: Nadpis stránky }
+          - { name: ucinnost, label: Účinné od, hint: "Datum, od kdy zásady platí, např. 25. 10. 2026" }
+          - { name: dobaUchovani, label: Jak dlouho údaje uchovávám, widget: text }
 
       - name: seo
         label: Google a sdílení

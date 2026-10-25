@@ -1,0 +1,107 @@
+<!doctype html>
+<!--
+  Zásady zpracování osobních údajů (šablona Handlebars).
+  Údaje o firmě se berou z redakce (Firma a kontakty), nadpis, účinnost a dobu uchování
+  lze změnit v redakci (Zásady ochrany osobních údajů). Ostatní text se mění tady.
+-->
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{{zasady.nadpis}} · {{firma.nazev}}</title>
+    <meta name="description" content="Jak {{firma.nazev}} zpracovává osobní údaje z poptávkového formuláře." />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#121212" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+    <script type="module" src="/src/legal.js"></script>
+  </head>
+
+  <body>
+    <header class="legal-header">
+      <div class="container legal-header__inner">
+        <a class="logo" href="../">
+          <span class="logo__mark" aria-hidden="true">K</span>
+          <span class="logo__text">
+            <span class="logo__name">{{firma.nazev}}</span>
+            <span class="logo__sub">{{firma.podtitul}}</span>
+          </span>
+        </a>
+        <a class="legal-back" href="../">← Zpět na web</a>
+      </div>
+    </header>
+
+    <main class="container legal">
+      <article class="legal__article">
+        <p class="eyebrow">Ochrana osobních údajů</p>
+        <h1 class="legal__title">{{zasady.nadpis}}</h1>
+        <p class="legal__meta">Účinné od {{zasady.ucinnost}}</p>
+
+        <h2>1. Kdo údaje zpracovává</h2>
+        <p>
+          Správcem osobních údajů je <strong>{{firma.jmeno}}</strong>, IČO {{firma.ico}}, se sídlem {{firma.adresa.ulice}},
+          {{firma.adresa.psc}} {{firma.adresa.mesto}}.
+        </p>
+        <p>
+          Kontakt: <a href="mailto:{{firma.email}}">{{firma.email}}</a>, <a href="tel:{{telHref}}">{{firma.telefon}}</a>
+        </p>
+
+        <h2>2. Jaké údaje a proč</h2>
+        <p>
+          Když pošlete poptávku přes formulář na webu, zpracovávám údaje, které do něj vyplníte: jméno, telefon,
+          vybrané služby a text zprávy. Používám je jen ke kontaktu s vámi, vyřízení poptávky a přípravě nabídky.
+        </p>
+        <p>
+          Právním základem je jednání o smlouvě na vaši žádost (čl. 6 odst. 1 písm. b) obecného nařízení o ochraně
+          osobních údajů, GDPR). Odeslání formuláře je dobrovolné, bez telefonu se vám ale nemám jak ozvat.
+        </p>
+
+        <h2>3. Komu údaje předávám</h2>
+        <ul>
+          <li>
+            <strong>Formspree, Inc.</strong> (USA) – služba, která poptávku z formuláře doručí e-mailem. Údaje se tím
+            předávají do USA. <a href="https://formspree.io/legal/privacy-policy" rel="noopener" target="_blank">Zásady ochrany soukromí Formspree</a>
+          </li>
+          <li>Poskytovatel e-mailové schránky, do které poptávky přicházejí ({{firma.email}}).</li>
+        </ul>
+        <p>Údaje neprodávám a nikomu dalšímu je nepředávám.</p>
+
+        <h2>4. Jak dlouho údaje uchovávám</h2>
+        <p>{{zasady.dobaUchovani}}</p>
+
+        <h2>5. Vaše práva</h2>
+        <p>
+          Máte právo na přístup ke svým údajům, jejich opravu nebo výmaz, omezení zpracování, přenositelnost a právo
+          vznést námitku. Stačí napsat na <a href="mailto:{{firma.email}}">{{firma.email}}</a>.
+        </p>
+        <p>
+          Pokud máte za to, že s údaji nakládám v rozporu s předpisy, můžete podat stížnost u Úřadu pro ochranu
+          osobních údajů (<a href="https://uoou.gov.cz" rel="noopener" target="_blank">uoou.gov.cz</a>).
+        </p>
+
+        <h2>6. Návštěva webu</h2>
+        <p>
+          Web nepoužívá cookies ani nástroje pro sledování návštěvnosti. Běží na službě GitHub Pages (GitHub, Inc.,
+          USA), která kvůli provozu a bezpečnosti zpracovává technické údaje o návštěvě, například IP adresu. Písma
+          webu se načítají ze služby Google Fonts (Google), která tak také obdrží IP adresu návštěvníka.
+        </p>
+      </article>
+    </main>
+
+    <footer class="legal-footer">
+      <div class="container legal-footer__inner">
+        <span class="legal-footer__brand">{{firma.nazev}}</span>
+        <p class="legal-footer__copy">© {{rok}} · {{paticka.text}} · {{firma.jmeno}}</p>
+        <a class="legal-back" href="../">← Zpět na web</a>
+      </div>
+    </footer>
+  </body>
+</html>

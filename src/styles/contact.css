@@ -283,6 +283,21 @@
   color: var(--c-muted);
 }
 
+.form__note a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgb(158 153 148 / 0.5);
+  text-underline-offset: 3px;
+  transition:
+    color 0.2s,
+    text-decoration-color 0.2s;
+}
+
+.form__note a:hover {
+  color: var(--c-text);
+  text-decoration-color: var(--c-accent);
+}
+
 .form-success {
   display: grid;
   justify-items: start;

@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Stránka Zásady zpracování osobních údajů
+   ========================================================================== */
+.legal-header {
+  border-bottom: 1px solid var(--c-line);
+  background: var(--hatch), var(--c-bg);
+}
+
+.legal-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: var(--header-h);
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.legal-back:hover {
+  color: var(--c-accent);
+}
+
+.legal {
+  padding-block: clamp(48px, 8vw, 96px);
+}
+
+.legal__article {
+  max-width: 720px;
+}
+
+.legal__title {
+  font-family: var(--f-display);
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.legal__meta {
+  margin-top: 16px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.legal__article h2 {
+  margin: 48px 0 14px;
+  padding-top: 24px;
+  border-top: 1px solid var(--c-line);
+  font-family: var(--f-display);
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.legal__article p,
+.legal__article li {
+  color: #cfcac4;
+}
+
+.legal__article p + p {
+  margin-top: 12px;
+}
+
+.legal__article ul {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-left: 0;
+}
+
+.legal__article li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.legal__article li::before {
+  content: '';
+  position: absolute;
+  top: 0.75em;
+  left: 0;
+  width: 10px;
+  height: 1px;
+  background: var(--c-accent);
+}
+
+.legal__article strong {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.legal__article a {
+  color: var(--c-text);
+  text-decoration-color: var(--c-accent);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.legal__article a:hover {
+  color: var(--c-accent);
+}
+
+.legal__article a[href^='tel:'] {
+  white-space: nowrap;
+}
+
+.legal-footer {
+  border-top: 1px solid var(--c-line);
+  background: var(--hatch), var(--c-bg);
+}
+
+.legal-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+  padding-block: 32px;
+}
+
+.legal-footer__brand {
+  font-family: var(--f-display);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.legal-footer__copy {
+  font-size: 14px;
+  color: var(--c-muted);
+}
+
+@media (max-width: 479px) {
+  .legal-header .logo__sub {
+    display: none;
+  }
+}
