@@ -1,7 +1,7 @@
 # Sestavení a nasazení webu.
 # Spustí se po každé změně ve větvi main – i po uložení v redakci (/admin/).
 #
-# 1) GitHub Pages: web se vždy nasadí na https://adampribyl-collab.github.io/kubovo-dilna/
+# 1) GitHub Pages: web se vždy nasadí na https://www.kubovodilna.cz/ (vlastní doména v Settings → Pages)
 #    (vlastní doménu lze později nastavit v Settings → Pages → Custom domain).
 # 2) FTP (volitelně, až bude vlastní hosting): v Settings → Secrets and variables → Actions vytvořte
 #      FTP_SERVER    např. ftp.vashosting.cz

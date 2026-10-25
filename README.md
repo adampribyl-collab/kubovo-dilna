@@ -10,8 +10,8 @@ Redakce ukládá změny do tohoto GitHub repozitáře a GitHub Actions pak web s
 redakce /admin/ ──uloží──▶ GitHub (src/content/*.json, photos/) ──▶ GitHub Actions: build ──▶ GitHub Pages (+ volitelně FTP)
 ```
 
-- Web: https://adampribyl-collab.github.io/kubovo-dilna/
-- Redakce: https://adampribyl-collab.github.io/kubovo-dilna/admin/
+- Web: https://www.kubovodilna.cz/
+- Redakce: https://www.kubovodilna.cz/admin/
 
 ## Spuštění
 
@@ -31,7 +31,7 @@ npm run preview    # náhled hotového buildu → http://localhost:4173
 
 ## Redakce (úprava obsahu)
 
-Na webu otevřete `/admin/` (teď https://adampribyl-collab.github.io/kubovo-dilna/admin/). V redakci jsou dvě části:
+Na webu otevřete `/admin/` (https://www.kubovodilna.cz/admin/). V redakci jsou dvě části:
 
 - **Texty webu** – Firma a kontakty, Menu a tlačítka, Úvodní obrazovka, Služby, Citát u svářeče, Postup,
   Kontakt a formulář, Patička, Google a sdílení.
@@ -64,7 +64,7 @@ Pak je stačí commitnout a pushnout.
 
 Workflow `.github/workflows/deploy.yml` se spustí po každé změně ve větvi `main`. Web sestaví a:
 
-- nasadí ho na **GitHub Pages** (https://adampribyl-collab.github.io/kubovo-dilna/),
+- nasadí ho na **GitHub Pages** s doménou https://www.kubovodilna.cz/ (DNS u Českého hostingu: A záznamy na GitHub, `www` CNAME na `adampribyl-collab.github.io`),
 - pokud jsou nastavené FTP údaje, nahraje ho i na vlastní hosting.
 
 **Vlastní doména:** po koupi domény ji nastavte v repozitáři v Settings → Pages → Custom domain (a u registrátora
